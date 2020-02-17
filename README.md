@@ -1,2 +1,2 @@
 # site
-Main site, launchpad wasn't too great
+The new main site, the launchpad wasn't too great
