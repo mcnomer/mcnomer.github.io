@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway:300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/gallery/main.css">
+  <title>Gallery</title>
+</head>
+<body>
+  <a href="/">
+    <button class="back">
+      <img src="/icons/home.svg" alt="Home">
+    </button>
+  </a>
+  <h1 class="title">Gallery</h1>
+  <div class="images"></div>
+  <div class="imageviewer">
+    <button class="close">
+      <img src="/icons/x.svg" alt="Close">
+    </button>
+    <button class="control-btn prev">
+      <img src="/icons/chevron-left.svg" alt="Previous">
+    </button>
+    <button class="control-btn next">
+      <img src="/icons/chevron-right.svg" alt="Next">
+    </button>
+    <button class="info">
+      <span>i</span>
+    </button>
+    <div class="footer">
+      <p class="img-title">Title</p>
+    </div>
+  </div>
+  <link rel="modulepreload" href="/gallery/createElement.mjs">
+  <script type="module" src="/gallery/app.mjs"></script>
+</body>
+</html>
