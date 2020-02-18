@@ -1,0 +1,21 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 164">
+	<defs>
+		<style>
+			.cls-2{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:10px;}.cls-3{opacity:0.2;}.cls-4{fill:#fbffff;}
+		</style>
+	</defs>
+	<title>
+		logo
+	</title>
+	<g id="Logo">
+		<path d="M530.89,527.61a2.5,2.5,0,1,1-2.5,2.5,2.5,2.5,0,0,1,2.5-2.5m0-2a4.5,4.5,0,1,0,4.5,4.5,4.5,4.5,0,0,0-4.5-4.5Z" transform="translate(-458 -458)" />
+		<path d="M530.89,519.61a10.5,10.5,0,1,1-10.5,10.5,10.51,10.51,0,0,1,10.5-10.5m0-2a12.5,12.5,0,1,0,12.5,12.5,12.5,12.5,0,0,0-12.5-12.5Z" transform="translate(-458 -458)" />
+		<path d="M523.75,517.49a14.48,14.48,0,0,0-5.38,5.3l-19.92-11.5a37.7,37.7,0,0,1,13.8-13.73Z" transform="translate(-458 -458)" />
+		<path d="M563.41,548.8a37.75,37.75,0,0,1-13.65,13.73l-11.49-19.94a14.55,14.55,0,0,0,5.22-5.29Z" transform="translate(-458 -458)" />
+		<line class="cls-2" x1="107.61" y1="107.39" x2="142.61" y2="142.39" />
+		<g class="cls-3">
+			<circle class="cls-4" cx="72.39" cy="72.61" r="51" />
+		</g>
+		<path d="M530.39,486.61a44,44,0,1,1-44,44,44.05,44.05,0,0,1,44-44m0-7a51,51,0,1,0,51,51,51,51,0,0,0-51-51Z" transform="translate(-458 -458)" />
+	</g>
+</svg>
