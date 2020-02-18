@@ -29,6 +29,7 @@ main {
   align-items: center;
   justify-items: center;
   padding: 1rem;
+  z-index: 1;
 }
 
 .title {
@@ -154,4 +155,13 @@ main {
 
 ::selection {
   background: rgba(201, 224, 242, 0.3);
+}
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
+  background-color: #1b2740;
+  z-index: -1;
 }

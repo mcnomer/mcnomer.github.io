@@ -248,3 +248,12 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
+  background-color: #1b2740;
+  z-index: -1;
+}
