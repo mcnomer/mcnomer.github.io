@@ -3,4 +3,5 @@ The new main site - the old launchpad wasn't too great, so I removed a bunch of 
 
 ### Attributions
 
-* Icons from Feather Icons
+* Icons from [Feather Icons](https://feathericons.com/)
+* Fonts: Raleway and Montserrat from [Google Fonts](https://fonts.google.com/)
