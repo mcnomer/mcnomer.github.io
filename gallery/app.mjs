@@ -36,7 +36,7 @@ function calculateColumns(data) {
       const d = data[i];
       const page = d.pages[0];
       let img = createElement("img");
-      img.src = page.thumb;
+      img.src = page.thumb || page.file;
       img.alt = d.name;
       img.onclick = e => openImageViewer(e, d);
       columns[i % numCols].append(img);

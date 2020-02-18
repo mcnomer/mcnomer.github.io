@@ -76,6 +76,10 @@ body {
   cursor: pointer;
 }
 
+.images img:nth-of-type(4n + 1) {background: #d49bd4;}
+.images img:nth-of-type(4n + 2) {background: #d4b89b;}
+.images img:nth-of-type(4n + 3) {background: #9bd49b;}
+
 .imageviewer {
   position: fixed;
   top: 0;
