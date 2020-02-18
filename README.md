@@ -1,5 +1,5 @@
 # site
-The new main site, the launchpad wasn't too great
+The new main site - the old launchpad wasn't too great, so I removed a bunch of bloat.
 
 ### Attributions
 
