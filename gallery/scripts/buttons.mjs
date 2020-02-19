@@ -1,8 +1,10 @@
 export function newGrowButton(btn, openCallback) {
-  let initialContents = btn.innerHTML;
+  const initialContents = "<span>i</span>";
+  let contentsTimeout;
   btn.onclick = function onButtonClick() {
     btn.onclick = null;
-    initialContents = btn.innerHTML;
+    if (contentsTimeout) clearTimeout(contentsTimeout);
+    contentsTimeout = null;
     if (openCallback) {
       if (openCallback()) return;
     }
@@ -15,7 +17,7 @@ export function newGrowButton(btn, openCallback) {
         btn.onclick = onButtonClick;
         document.body.onclick = document.body.oncontextmenu = null;
         btn.removeAttribute("open");
-        setTimeout(() => {
+        contentsTimeout = setTimeout(() => {
           btn.innerHTML = initialContents;
         }, 300);
       }

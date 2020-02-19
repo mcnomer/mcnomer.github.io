@@ -37,6 +37,7 @@ function closeImageViewer() {
   imgViewer.style.transitionProperty = "width, height, left, top";
   imgViewer.style.left = originX + "px";
   imgViewer.style.top = originY + "px";
+  document.onkeydown = null;
 }
 
 function loadImageViewer(d) {
@@ -64,6 +65,7 @@ function loadImage(d, i) {
 }
 
 export function switchImage(d, diff = 0) {
+  if (d.pages.length <= 1) return;
   currentImg.style.transition = "transform 0.3s ease-out";
   currentImg.style.transform = "translateX(" + 100 * Math.sign(diff) + "vw)";
   setTimeout(() => {
@@ -98,9 +100,7 @@ function loadControls(img, d) {
     img.style.transform = "translate(" + value[0] + "px, " + value[1] + "px)";
   }, value => {
     if (Math.abs(value[1]) > window.innerHeight / 4) {
-      currentImg.style.transition = "transform 0.15s ease-out";
-      currentImg.style.transform = "translateY(" + 100 * Math.sign(value[1]) + "vh)";
-      setTimeout(closeImageViewer, 100);
+      animatedCloseImageViewer(Math.sign(value[1]));
     } else {
       if (Math.abs(value[0]) > window.innerWidth / 4 && d.pages.length > 1) {
         switchImage(d, Math.sign(value[0]));
@@ -133,6 +133,28 @@ function loadControls(img, d) {
   }
 
   updatePagination(d, pageIndex);
+  let infoOpen = false;
+  document.onkeydown = e => {
+    if (e.code === "ArrowLeft") switchImage(d, 1);
+    if (e.code === "ArrowRight") switchImage(d, -1);
+    if (e.code === "ArrowUp") animatedCloseImageViewer(-1);
+    if (e.code === "ArrowDown") animatedCloseImageViewer(1);
+    if (e.code === "KeyI" || e.code === "Space") {
+      if (infoOpen) {
+        currentImg.click();
+        infoOpen = false;
+      } else {
+        imageViewerInfoBtn.click();
+        infoOpen = true;
+      }
+    }
+  }
+}
+
+function animatedCloseImageViewer(direction = 0) {
+  currentImg.style.transition = "transform 0.15s ease-out";
+  currentImg.style.transform = "translateY(" + 100 * Math.sign(direction) + "vh)";
+  setTimeout(closeImageViewer, 100);
 }
 
 function getFullImageSrc(page) {
