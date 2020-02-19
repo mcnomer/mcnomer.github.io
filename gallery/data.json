@@ -1,28 +1,25 @@
 [
   {
-    "title": "Untitled 2",
     "name": "Untitled 2",
     "pages": [
       {
-        "file": "/gallery/images/full/terrible.png",
+        "file": "/gallery/images/full/terrible.jpg",
         "thumb": "/gallery/images/thumbs/terrible.jpg",
         "description": "I guess this could be called second attempt at abstract - this time a little brighter - though funnily enough, like before it's born out of frustration."
       }
     ]
   },
   {
-    "title": "Lemon",
     "name": "Lemon",
     "pages": [
       {
-        "file": "/gallery/images/full/lemon.png",
+        "file": "/gallery/images/full/lemon.jpg",
         "thumb": "/gallery/images/thumbs/lemon.jpg",
         "description": "This was a little while ago but I think this logo was for a joke fashion brand (I have no idea where the idea came from)."
       }
     ]
   },
   {
-    "title": "Flashy",
     "name": "Flashy",
     "pages": [
       {
@@ -36,7 +33,6 @@
     ]
   },
   {
-    "title": "Uh oh",
     "name": "Uh oh",
     "pages": [
       {
@@ -45,23 +41,21 @@
     ]
   },
   {
-    "title": "Mist",
     "name": "Mist",
     "pages": [
       {
-        "file": "/gallery/images/full/mist.png",
+        "file": "/gallery/images/full/mist.jpg",
         "thumb": "/gallery/images/thumbs/mist.jpg",
         "description": "This little vector illustration thingy was made for a little experiment with parallax. In a <a href='https://now.am-i.cool/web-stuff/parallax'>separate site</a> I used layers to build up a parallax effect of sorts based off a few tutorials and things (mainly the <a href='https://www.firewatchgame.com/'>firewatch website</a> because it's awesome)."
       },
       {
-        "file": "/gallery/images/full/underground.png",
+        "file": "/gallery/images/full/underground.jpg",
         "thumb": "/gallery/images/thumbs/underground.jpg",
         "description": "The spooky (sorta) underground area, beneath the hills."
       }
     ]
   },
   {
-    "title": "Mannequin",
     "name": "Mannequin",
     "pages": [
       {
@@ -102,29 +96,26 @@
     ]
   },
   {
-    "title": "Neon",
     "name": "Neon",
     "pages": [
       {
-        "file": "/gallery/images/full/neon.png",
+        "file": "/gallery/images/full/neon.jpg",
         "thumb": "/gallery/images/thumbs/neon.jpg",
         "description": "A quick doodle using a black canvas because the idea felt quite cool, and more neon colours felt fun to just mess about with."
       }
     ]
   },
   {
-    "title": "Bird",
     "name": "Bird",
     "pages": [
       {
-        "file": "/gallery/images/full/bird.png",
+        "file": "/gallery/images/full/bird.jpg",
         "thumb": "/gallery/images/thumbs/bird.jpg",
         "description": "If you can't tell, this is supposed to be a bird I guess. This started in a bored doodle of a more cartoonish bird, but I decided to add some colour and kinda just wanted to throw some paint around, which I ended up doing in a more literal sense. I've never done things in this sort of style before and I've got to say, I rather like it."
       }
     ]
   },
   {
-    "title": "Bloopyfloop",
     "name": "Bloopyfloop",
     "pages": [
       {
@@ -135,40 +126,36 @@
     ]
   },
   {
-    "title": "Tree",
     "name": "Life in a Felled Tree",
     "pages": [
       {
-        "file": "/gallery/images/full/tree.png",
+        "file": "/gallery/images/full/tree.jpg",
         "thumb": "/gallery/images/thumbs/tree.jpg",
         "description": "THIS, oh my goodness gracious me, this blooming drawing. It took so much out of me because it took so long to do, plus as time went on, the fear of smudging it went exponentially up, and there are still visible smudge marks on it that I couldn't get rid of. At least it's sort of passable in looks, despite the dodgy scan making the contrast go all funny."
       }
     ]
   },
   {
-    "title": "Lobalug",
     "name": "Lobalug",
     "pages": [
       {
-        "file": "/gallery/images/full/lobalug.png",
+        "file": "/gallery/images/full/lobalug.jpg",
         "thumb": "/gallery/images/thumbs/lobalug.jpg",
         "description": "An attempt at a more cartoonish digital painting I made for a CoMC task, but also took as a personal challenge and chance to try out a style that I now love for anything I don't want to spend an age on."
       }
     ]
   },
   {
-    "title": "Paper Sky",
     "name": "Paper Sky",
     "pages": [
       {
-        "file": "/gallery/images/full/paper_sky.png",
+        "file": "/gallery/images/full/paper_sky.jpg",
         "thumb": "/gallery/images/thumbs/paper_sky.jpg",
         "description": "Made this for the cover of a spotify playlist, not quite sure why I had the idea honestly, so I suppose it's up to you to interpret it as you wish."
       }
     ]
   },
   {
-    "title": "Ball",
     "name": "Shading Exercise",
     "pages": [
       {
@@ -179,64 +166,59 @@
     ]
   },
   {
-    "title": "Untitled",
     "name": "Untitled",
     "pages": [
       {
-        "file": "/gallery/images/full/untitled.png",
+        "file": "/gallery/images/full/untitled.jpg",
         "thumb": "/gallery/images/thumbs/untitled.jpg",
         "description": "This attempt at abstract art of sorts came about because I hadn't much inspiration, and just kind of scribbled all over the page in frustration."
       }
     ]
   },
   {
-    "title": "Eye",
     "name": "Eye",
     "pages": [
       {
-        "file": "/gallery/images/full/eye.png",
+        "file": "/gallery/images/full/eye.jpg",
         "thumb": "/gallery/images/thumbs/eye.jpg",
         "description": "I originally made this for a spotify playlist cover, but then switched it out for something else when it didn't quite fit."
       }
     ]
   },
   {
-    "title": "Hair",
     "name": "Hair",
     "pages": [
       {
-        "file": "/gallery/images/full/hair.png",
+        "file": "/gallery/images/full/hair.jpg",
         "thumb": "/gallery/images/thumbs/hair.jpg",
         "description": "Did this while learning how to draw hair digitally using an online tutorial to get the technique. At first, this was just some hair, but after deciding that the faceless demon I had created was pure nightmare fuel, I quickly whipped up an admitttedly badly shaded face."
       }
     ]
   },
   {
-    "title": "Walking",
     "name": "Walking",
     "pages": [
       {
-        "file": "/gallery/images/full/walking.png",
+        "file": "/gallery/images/full/walking.jpg",
         "thumb": "/gallery/images/thumbs/walking.jpg",
         "description": "Done just after the my first digital thing, this is just a digitally coloured version of a pencil sketch I did when bored. I wasn't too great with the hand-eye coordination with the drawing tablet, so instead of practising with drawing exercises I chose to trace an old drawing, since that would be more fun."
       },
       {
-        "file": "/gallery/images/full/walking_drawing.png",
+        "file": "/gallery/images/full/walking_drawing.jpg",
         "description": "This is the old drawing I copied from. Drew it one bored night on a scrap piece of paper (means I don't have to waste the sketchbook)."
       }
     ]
   },
   {
-    "title": "Night",
     "name": "Person at Night",
     "pages": [
       {
-        "file": "/gallery/images/full/night.png",
+        "file": "/gallery/images/full/night.jpg",
         "thumb": "/gallery/images/thumbs/night.jpg",
         "description": "This is actually the first thing I did digitally! I copied a different sketch I'd done with pencils, as a reference, and after a stupidly long time, I ended up with this."
       },
       {
-        "file": "/gallery/images/full/night_drawing.png",
+        "file": "/gallery/images/full/night_drawing.jpg",
         "thumb": "/gallery/images/full/night_drawing.jpg",
         "description": "Not sure where this came from, to be honest. I guess I was just bored, as usual, so picked up a pencil, then went over in pen."
       }
