@@ -91,6 +91,7 @@ body {
   background: black;
   transition: all 0.3s ease-in-out;
   transition-property: width, height;
+  touch-action: none;
   z-index: 5;
 }
 
@@ -249,7 +250,6 @@ body {
   height: 100%;
   object-fit: scale-down;
   transition: opacity 0.1s ease-in-out;
-  touch-action: none;
 }
 
 ::-webkit-scrollbar, ::-webkit-scrollbar-thumb {
