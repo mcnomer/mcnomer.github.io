@@ -17,7 +17,7 @@ export function newGrowButton(btn, openCallback) {
         btn.removeAttribute("open");
         setTimeout(() => {
           btn.innerHTML = initialContents;
-        }, 150);
+        }, 300);
       }
     };
   };
