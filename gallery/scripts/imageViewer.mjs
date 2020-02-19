@@ -26,8 +26,8 @@ export function openImageViewer(e, d) {
       loadImageViewer(d);
       imgViewer.style.transitionProperty = "width, height, left, top";
       imgViewer.style.left = imgViewer.style.top = "";
-      imgViewer.style.width = "100vw";
-      imgViewer.style.height = "100vh";
+      imgViewer.style.width = "100%";
+      imgViewer.style.height = "100%";
     })
   });
 }

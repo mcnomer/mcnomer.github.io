@@ -132,7 +132,7 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.pagination {
+.imageviewer .pagination {
   position: absolute;
   top: 1rem;
   left: 50%;
@@ -144,7 +144,7 @@ body {
   z-index: 6;
 }
 
-.pagination button {
+.imageviewer .pagination button {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
@@ -154,12 +154,12 @@ body {
   transition: transform 0.1s ease-in-out;
 }
 
-.pagination button:hover {
+.imageviewer .pagination button:hover {
   transform: scale(1.2);
 }
 
-.pagination button[selected],
-.pagination button:active {
+.imageviewer .pagination button[selected],
+.imageviewer .pagination button:active {
   transform: scale(1.5);
 }
 
