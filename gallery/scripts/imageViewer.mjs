@@ -1,6 +1,7 @@
 import { createElement } from "./createElement.mjs";
 import { loadSlider } from "./slide.mjs";
 import { newGrowButton } from "./buttons.mjs";
+import { loadPagination, updatePagination } from "./pagination.mjs";
 
 const imgViewer = document.querySelector(".imageviewer");
 const imageViewerCloseBtn = imgViewer.querySelector(".close");
@@ -39,6 +40,7 @@ function closeImageViewer() {
 }
 
 function loadImageViewer(d) {
+  loadPagination(d);
   loadImage(d, 0);
 }
 
@@ -61,9 +63,9 @@ function loadImage(d, i) {
   loadControls(img, d);
 }
 
-function switchImage(d, diff = 0) {
+export function switchImage(d, diff = 0) {
   currentImg.style.transition = "transform 0.3s ease-out";
-  currentImg.style.transform = "translateX(" + 100 * diff + "vw)";
+  currentImg.style.transform = "translateX(" + 100 * Math.sign(diff) + "vw)";
   setTimeout(() => {
     pageIndex-= diff;
     if (pageIndex > d.pages.length - 1) pageIndex = 0;
@@ -114,6 +116,8 @@ function loadControls(img, d) {
   } else {
     imageViewerInfoBtn.style.display = "none";
   }
+
+  updatePagination(d, pageIndex);
 }
 
 function getFullImageSrc(page) {
