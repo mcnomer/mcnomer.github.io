@@ -75,16 +75,25 @@ export function switchImage(d, diff = 0) {
 }
 
 function loadControls(img, d) {
-  if (d.pages.length === 1) {
+  let showArrows = false;
+  let opacityTimeoutHandle;
+  if (d.pages.length <= 1) {
     imageViewerNextBtn.style.display = imageViewerPrevBtn.style.display = "none";
+    showArrows = false;
   } else {
-    imageViewerNextBtn.style.display = imageViewerPrevBtn.style.display = "";
+    imageViewerNextBtn.style = imageViewerPrevBtn.style = "";
     imageViewerPrevBtn.onclick = () => switchImage(d, 1);
     imageViewerNextBtn.onclick = () => switchImage(d, -1);
+    showArrows = true;
   }
 
   loadSlider(img, () => {
     img.style.transition = "";
+    if (showArrows) {
+      imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = 0;
+      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
+      opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.visibility = imageViewerPrevBtn.style.visibility = "hidden", 300);
+    }
   }, value => {
     img.style.transform = "translate(" + value[0] + "px, " + value[1] + "px)";
   }, value => {
@@ -99,6 +108,12 @@ function loadControls(img, d) {
         img.style = "";
         img.style.transition = "transform 0.3s ease-out";
       }
+    }
+    if (showArrows) {
+      imageViewerNextBtn.style = imageViewerPrevBtn.style = "";
+      imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = 0;
+      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
+      opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = "", 300);
     }
   });
 
