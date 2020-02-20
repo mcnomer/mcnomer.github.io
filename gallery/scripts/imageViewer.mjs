@@ -134,7 +134,7 @@ function loadControls(img, d) {
       if (imageViewer.zoomedIn) {
         //pan zoomed in image
       } else {
-        const pos = positions["primary"].pos;
+        const pos = pointers[0].pos;
         if (Math.abs(pos[0] - pos[1]) > 3) {
           if (locked === null) locked = (Math.abs(pos[0]) > Math.abs(pos[1])) ? "X" : "Y";
         }
@@ -152,7 +152,7 @@ function loadControls(img, d) {
       if (imageViewer.zoomedIn) {
         //
       } else {
-        const pos = positions["primary"].pos;
+        const pos = pointers[0].pos;
         if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
           animatedCloseImageViewer(Math.sign(pos[1]));
         } else {

@@ -48,6 +48,7 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
 
   function handleDown(e) {
     e.preventDefault();
+    console.log(e.pointerId);
     requestAnimationFrame(() => {
       let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
       if (!positions[pointerName]) {
