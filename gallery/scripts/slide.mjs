@@ -10,8 +10,10 @@ if (!window.PointerEvent) {
   events.cancel = "touchcancel";
 }
 
-export function loadSlider(slider, startCallback, moveCallback, endCallback) {
-  let startX = 0, startY = 0, value = 0;
+export function loadSlider(slider, startCallback, moveCallback, endCallback, secondaryStartCallback, secondaryMoveCallback, secondaryEndCallback) {
+  let startX = 0, startY = 0, pos;
+  let secondaryStartX = 0, secondaryStartY = 0, secondaryPos;
+  const useMultiplePointers = (secondaryStartCallback || secondaryMoveCallback || secondaryEndCallback);
 
   function getPointerPos(e) {
     if (e.targetTouches) {
@@ -23,34 +25,63 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
 
   function handleMove(e) {
     e.preventDefault();
-    requestAnimationFrame(() => {
-      const [x, y] = getPointerPos(e);
-      value = [x - startX, y - startY];
-      moveCallback(value);
-    });
+    if (e.isPrimary) {
+      requestAnimationFrame(() => {
+        const [x, y] = getPointerPos(e);
+        pos = [x - startX, y - startY];
+        moveCallback(pos);
+      });
+    } else {
+      if (useMultiplePointers) {
+        requestAnimationFrame(() => {
+          const [x, y] = getPointerPos(e);
+          secondaryPos = [x - secondaryStartX, y - secondaryStartY];
+          secondaryMoveCallback(secondaryPos);
+        });
+      }
+    }
   }
 
   function handleEnd(e) {
     e.preventDefault();
-    requestAnimationFrame(() => {
-      const [x, y] = getPointerPos(e);
-      value = [x - startX, y - startY];
-      endCallback(value);
-    });
-    document.removeEventListener(events.move, handleMove, true);
-    document.removeEventListener(events.end, handleEnd, true);
-    document.removeEventListener(events.cancel, handleEnd, true);
+    if (e.isPrimary) {
+      requestAnimationFrame(() => {
+        const [x, y] = getPointerPos(e);
+        pos = [x - startX, y - startY];
+        endCallback(pos);
+      });
+      document.removeEventListener(events.move, handleMove, true);
+      document.removeEventListener(events.end, handleEnd, true);
+      document.removeEventListener(events.cancel, handleEnd, true);
+    } else {
+      if (useMultiplePointers) {
+        requestAnimationFrame(() => {
+          const [x, y] = getPointerPos(e);
+          secondaryPos = [x - secondaryStartX, y - secondaryStartY];
+          secondaryEndCallback(secondaryPos);
+        });
+      }
+    }
   }
 
   function handleDown(e) {
     e.preventDefault();
-    requestAnimationFrame(() => {
-      [startX, startY] = getPointerPos(e);
-      startCallback();
-    });
-    document.addEventListener(events.move, handleMove, true);
-    document.addEventListener(events.end, handleEnd, true);
-    document.addEventListener(events.cancel, handleEnd, true);
+    if (e.isPrimary) {
+      requestAnimationFrame(() => {
+        [startX, startY] = getPointerPos(e);
+        startCallback();
+      });
+      document.addEventListener(events.move, handleMove, true);
+      document.addEventListener(events.end, handleEnd, true);
+      document.addEventListener(events.cancel, handleEnd, true);
+    }  else {
+      if (useMultiplePointers) {
+        requestAnimationFrame(() => {
+          [secondaryStartX, secondaryStartY] = getPointerPos(e);
+          startCallback();
+        });
+      }
+    }
   }
 
   if (window.PointerEvent) {

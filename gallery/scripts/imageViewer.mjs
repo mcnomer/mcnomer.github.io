@@ -2,41 +2,50 @@ import { createElement } from "./createElement.mjs";
 import { loadSlider } from "./slide.mjs";
 import { newGrowButton } from "./buttons.mjs";
 import { loadPagination, updatePagination } from "./pagination.mjs";
+import { doubleClick, startZoom, updateZoom, endZoom } from "./imageViewerZoom.mjs";
 
-const imgViewer = document.querySelector(".imageviewer");
-const imageViewerCloseBtn = imgViewer.querySelector(".close");
-imageViewerCloseBtn.onclick = closeImageViewer;
-const imageViewerPrevBtn = imgViewer.querySelector(".prev");
-const imageViewerNextBtn = imgViewer.querySelector(".next");
-const imageViewerInfoBtn = imgViewer.querySelector(".info");
-const imageViewerTitle = imgViewer.querySelector(".img-title");
+const viewer = document.querySelector(".imageviewer");
+
+export const imageViewer = {
+  viewer: viewer,
+  image: null,
+  buttons: {
+    close: viewer.querySelector(".close"),
+    prev: viewer.querySelector(".prev"),
+    next: viewer.querySelector(".next"),
+    info: viewer.querySelector(".info")
+  },
+  title: viewer.querySelector(".img-title"),
+  zoomedIn: false
+}
+
+imageViewer.buttons.close.onclick = closeImageViewer;
 
 let originX = 0, originY = 0;
 let pageIndex = 0;
-let currentImg;
 
 export function openImageViewer(e, d) {
   pageIndex = 0;
   [originX, originY] = [e.clientX, e.clientY];
-  imgViewer.style = "";
-  imgViewer.style.left = originX + "px";
-  imgViewer.style.top = originY + "px";
+  viewer.style = "";
+  viewer.style.left = originX + "px";
+  viewer.style.top = originY + "px";
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       loadImageViewer(d);
-      imgViewer.style.transitionProperty = "width, height, left, top";
-      imgViewer.style.left = imgViewer.style.top = "";
-      imgViewer.style.width = "100%";
-      imgViewer.style.height = "100%";
+      viewer.style.transitionProperty = "width, height, left, top";
+      viewer.style.left = viewer.style.top = "";
+      viewer.style.width = "100%";
+      viewer.style.height = "100%";
     })
   });
 }
 
 function closeImageViewer() {
-  document.body.style.overflow = imgViewer.style = "";
-  imgViewer.style.transitionProperty = "width, height, left, top";
-  imgViewer.style.left = originX + "px";
-  imgViewer.style.top = originY + "px";
+  document.body.style.overflow = viewer.style = "";
+  viewer.style.transitionProperty = "width, height, left, top";
+  viewer.style.left = originX + "px";
+  viewer.style.top = originY + "px";
   document.onkeydown = null;
 }
 
@@ -46,18 +55,18 @@ function loadImageViewer(d) {
 }
 
 function loadImage(d, i) {
-  if (currentImg) currentImg.remove();
+  if (imageViewer.image) imageViewer.image.remove();
   const page = d.pages[i];
-  const img = currentImg = createElement("img", "full-img noselect");
+  const img = imageViewer.image = createElement("img", "full-img noselect");
 
   img.src = getFullImageSrc(page);
   img.style.visibility = "hidden";
   img.style.opacity = 0;
-  imgViewer.append(img);
+  viewer.append(img);
 
   setTimeout(() => {
     img.style = "";
-    imgViewer.style.transitionProperty = "none";
+    viewer.style.transitionProperty = "none";
     document.body.style.overflow = "hidden";
   }, 300);
 
@@ -66,8 +75,8 @@ function loadImage(d, i) {
 
 export function switchImage(d, diff = 0) {
   if (d.pages.length <= 1) return;
-  currentImg.style.transition = "transform 0.3s ease-out";
-  currentImg.style.transform = "translateX(" + 100 * Math.sign(diff) + "vw)";
+  imageViewer.image.style.transition = "transform 0.3s ease-out";
+  imageViewer.image.style.transform = "translateX(" + 100 * Math.sign(diff) + "vw)";
   setTimeout(() => {
     pageIndex-= diff;
     if (pageIndex > d.pages.length - 1) pageIndex = 0;
@@ -80,64 +89,92 @@ function loadControls(img, d) {
   let showArrows = false;
   let opacityTimeoutHandle;
   if (d.pages.length <= 1) {
-    imageViewerNextBtn.style.display = imageViewerPrevBtn.style.display = "none";
+    imageViewer.buttons.next.style.display = imageViewer.buttons.prev.style.display = "none";
     showArrows = false;
   } else {
-    imageViewerNextBtn.style = imageViewerPrevBtn.style = "";
-    imageViewerPrevBtn.onclick = () => switchImage(d, 1);
-    imageViewerNextBtn.onclick = () => switchImage(d, -1);
+    imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
+    imageViewer.buttons.prev.onclick = () => switchImage(d, 1);
+    imageViewer.buttons.next.onclick = () => switchImage(d, -1);
     showArrows = true;
   }
 
   let locked = null;
+  let clickedRecently = false;
+  let clickedTimeout;
+  let primaryPos;
 
   loadSlider(img, () => {
     locked = null;
-    img.style.transition = "";
-    if (showArrows) {
-      imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = 0;
-      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-      opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.visibility = imageViewerPrevBtn.style.visibility = "hidden", 300);
-    }
-  }, value => {
-    if (Math.abs(value[0] - value[1]) > 3) {
-      if (locked === null) locked = (Math.abs(value[0]) > Math.abs(value[1])) ? "X" : "Y";
+    clearTimeout(clickedTimeout);
+    if (clickedRecently) {
+      clickedRecently = false;
+      imageViewer.zoomedIn = doubleClick(img);
+    } else {
+      clickedRecently = true;
+      clickedTimeout = setTimeout(() => {clickedRecently = false}, 300);
+      img.style.transition = "initial";
     }
 
-    const translateValue = (locked === "Y") ? value[1] : value[0];
-    img.style.transform = "translate" + locked + "(" + translateValue + "px)";
-  }, value => {
-    if (Math.abs(value[1]) > window.innerHeight / 4 && locked === "Y") {
-      animatedCloseImageViewer(Math.sign(value[1]));
+    if (showArrows) {
+      imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
+      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
+      opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.visibility = imageViewer.buttons.prev.style.visibility = "hidden", 300);
+    }
+  }, pos => {
+    primaryPos = pos;
+    if (imageViewer.zoomedIn) {
+      //
     } else {
-      if (Math.abs(value[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
-        switchImage(d, Math.sign(value[0]));
+      if (Math.abs(pos[0] - pos[1]) > 3) {
+        if (locked === null) locked = (Math.abs(pos[0]) > Math.abs(pos[1])) ? "X" : "Y";
+      }
+  
+      const translateValue = (locked === "Y") ? pos[1] : pos[0];
+      img.style.transform = "translate" + locked + "(" + translateValue + "px)";
+    }
+  }, pos => {
+    primaryPos = pos;
+    if (imageViewer.zoomedIn) {
+      //
+    } else {
+      if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
+        animatedCloseImageViewer(Math.sign(pos[1]));
       } else {
-        img.style = "";
-        img.style.transition = "transform 0.3s ease-out";
+        if (Math.abs(pos[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
+          switchImage(d, Math.sign(pos[0]));
+        } else {
+          img.style = "";
+        }
+      }
+      if (showArrows) {
+        imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
+        imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
+        if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
+        opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = "", 300);
       }
     }
-    if (showArrows) {
-      imageViewerNextBtn.style = imageViewerPrevBtn.style = "";
-      imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = 0;
-      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-      opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = "", 300);
-    }
+  }, () => {
+    imageViewer.zoomedIn = true;
+    startZoom();
+  }, secondaryPos => {
+    updateZoom(primaryPos, secondaryPos);
+  }, secondaryPos => {
+    endZoom(primaryPos, secondaryPos);
   });
 
-  imageViewerTitle.innerHTML = d.name;
+  imageViewer.title.innerHTML = d.name;
 
   const desc = d.pages[pageIndex].description;
   if (desc) {
-    imageViewerInfoBtn.style.display = "";
-    newGrowButton(imageViewerInfoBtn, () => {
+    imageViewer.buttons.info.style.display = "";
+    newGrowButton(imageViewer.buttons.info, () => {
       if (!desc) return true;
-      imageViewerInfoBtn.innerHTML = "";
+      imageViewer.buttons.info.innerHTML = "";
       const p = createElement("p", "desc", desc);
-      imageViewerInfoBtn.append(p);
+      imageViewer.buttons.info.append(p);
     });
   } else {
-    imageViewerInfoBtn.style.display = "none";
+    imageViewer.buttons.info.style.display = "none";
   }
 
   updatePagination(d, pageIndex);
@@ -149,10 +186,10 @@ function loadControls(img, d) {
     if (e.code === "ArrowDown") animatedCloseImageViewer(1);
     if (e.code === "KeyI" || e.code === "Space") {
       if (infoOpen) {
-        currentImg.click();
+        imageViewer.image.click();
         infoOpen = false;
       } else {
-        imageViewerInfoBtn.click();
+        imageViewer.buttons.info.click();
         infoOpen = true;
       }
     }
@@ -160,8 +197,8 @@ function loadControls(img, d) {
 }
 
 function animatedCloseImageViewer(direction = 0) {
-  currentImg.style.transition = "transform 0.15s ease-out";
-  currentImg.style.transform = "translateY(" + 100 * Math.sign(direction) + "vh)";
+  imageViewer.image.style.transition = "transform 0.15s ease-out";
+  imageViewer.image.style.transform = "translateY(" + 100 * Math.sign(direction) + "vh)";
   setTimeout(closeImageViewer, 100);
 }
 
