@@ -107,10 +107,10 @@ function loadControls(img, d) {
     const translateValue = (locked === "Y") ? value[1] : value[0];
     img.style.transform = "translate" + locked + "(" + translateValue + "px)";
   }, value => {
-    if (Math.abs(value[1]) > window.innerHeight / 4) {
+    if (Math.abs(value[1]) > window.innerHeight / 4 && locked === "Y") {
       animatedCloseImageViewer(Math.sign(value[1]));
     } else {
-      if (Math.abs(value[0]) > window.innerWidth / 4 && d.pages.length > 1) {
+      if (Math.abs(value[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
         switchImage(d, Math.sign(value[0]));
       } else {
         img.style = "";
