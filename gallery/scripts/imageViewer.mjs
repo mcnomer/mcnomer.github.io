@@ -100,9 +100,11 @@ function loadControls(img, d) {
       opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.visibility = imageViewerPrevBtn.style.visibility = "hidden", 300);
     }
   }, value => {
-    if (locked === null) locked = (value[0] < value[1]) ? "X" : "Y";
+    if (Math.abs(value[0] - value[1]) > 3) {
+      if (locked === null) locked = (Math.abs(value[0]) > Math.abs(value[1])) ? "X" : "Y";
+    }
 
-    const translateValue = (locked === "X") ? value[0] : value[1];
+    const translateValue = (locked === "Y") ? value[1] : value[0];
     img.style.transform = "translate" + locked + "(" + translateValue + "px)";
   }, value => {
     if (Math.abs(value[1]) > window.innerHeight / 4) {
