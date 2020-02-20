@@ -89,7 +89,10 @@ function loadControls(img, d) {
     showArrows = true;
   }
 
+  let locked = null;
+
   loadSlider(img, () => {
+    locked = null;
     img.style.transition = "";
     if (showArrows) {
       imageViewerNextBtn.style.opacity = imageViewerPrevBtn.style.opacity = 0;
@@ -97,7 +100,10 @@ function loadControls(img, d) {
       opacityTimeoutHandle = setTimeout(() => imageViewerNextBtn.style.visibility = imageViewerPrevBtn.style.visibility = "hidden", 300);
     }
   }, value => {
-    img.style.transform = "translate(" + value[0] + "px, " + value[1] + "px)";
+    if (locked === null) locked = (value[0] < value[1]) ? "X" : "Y";
+
+    const translateValue = (locked === "X") ? value[0] : value[1];
+    img.style.transform = "translate" + locked + "(" + translateValue + "px)";
   }, value => {
     if (Math.abs(value[1]) > window.innerHeight / 4) {
       animatedCloseImageViewer(Math.sign(value[1]));
