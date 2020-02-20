@@ -101,65 +101,75 @@ function loadControls(img, d) {
   let locked = null;
   let clickedRecently = false;
   let clickedTimeout;
-  let primaryPos;
 
-  loadSlider(img, () => {
-    locked = null;
-    clearTimeout(clickedTimeout);
-    if (clickedRecently) {
-      clickedRecently = false;
-      imageViewer.zoomedIn = doubleClick(img);
-    } else {
-      clickedRecently = true;
-      clickedTimeout = setTimeout(() => {clickedRecently = false}, 300);
-      img.style.transition = "initial";
+  loadSlider(img, positions => {
+    let pointers = [];
+    for (const pointer in positions) {
+      pointers.push(positions[pointer]);
     }
-
-    if (showArrows) {
-      imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
-      if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-      opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.visibility = imageViewer.buttons.prev.style.visibility = "hidden", 300);
-    }
-  }, pos => {
-    primaryPos = pos;
-    if (imageViewer.zoomedIn) {
-      //
-    } else {
-      if (Math.abs(pos[0] - pos[1]) > 3) {
-        if (locked === null) locked = (Math.abs(pos[0]) > Math.abs(pos[1])) ? "X" : "Y";
-      }
-  
-      const translateValue = (locked === "Y") ? pos[1] : pos[0];
-      img.style.transform = "translate" + locked + "(" + translateValue + "px)";
-    }
-  }, pos => {
-    primaryPos = pos;
-    if (imageViewer.zoomedIn) {
-      //
-    } else {
-      if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
-        animatedCloseImageViewer(Math.sign(pos[1]));
+    if (pointers.length === 1) {
+      locked = null;
+      clearTimeout(clickedTimeout);
+      if (clickedRecently) {
+        clickedRecently = false;
+        imageViewer.zoomedIn = doubleClick(img);
       } else {
-        if (Math.abs(pos[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
-          switchImage(d, Math.sign(pos[0]));
-        } else {
-          img.style = "";
-        }
+        clickedRecently = true;
+        clickedTimeout = setTimeout(() => {clickedRecently = false}, 300);
+        img.style.transition = "initial";
       }
+
       if (showArrows) {
-        imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
         imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
         if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-        opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = "", 300);
+        opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.visibility = imageViewer.buttons.prev.style.visibility = "hidden", 300);
       }
     }
-  }, () => {
-    imageViewer.zoomedIn = true;
-    startZoom();
-  }, secondaryPos => {
-    updateZoom(primaryPos, secondaryPos);
-  }, secondaryPos => {
-    endZoom(primaryPos, secondaryPos);
+  }, positions => {
+    let pointers = [];
+    for (const pointer in positions) {
+      pointers.push(positions[pointer]);
+    }
+    if (pointers.length === 1) {
+      if (imageViewer.zoomedIn) {
+        //pan zoomed in image
+      } else {
+        const pos = positions["primary"].pos;
+        if (Math.abs(pos[0] - pos[1]) > 3) {
+          if (locked === null) locked = (Math.abs(pos[0]) > Math.abs(pos[1])) ? "X" : "Y";
+        }
+    
+        const translateValue = (locked === "Y") ? pos[1] : pos[0];
+        img.style.transform = "translate" + locked + "(" + translateValue + "px)";
+      }
+    }
+  }, positions => {
+    let pointers = [];
+    for (const pointer in positions) {
+      pointers.push(positions[pointer]);
+    }
+    if (pointers.length === 1) {
+      if (imageViewer.zoomedIn) {
+        //
+      } else {
+        const pos = positions["primary"].pos;
+        if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
+          animatedCloseImageViewer(Math.sign(pos[1]));
+        } else {
+          if (Math.abs(pos[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
+            switchImage(d, Math.sign(pos[0]));
+          } else {
+            img.style = "";
+          }
+        }
+        if (showArrows) {
+          imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
+          imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
+          if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
+          opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = "", 300);
+        }
+      }
+    }
   });
 
   imageViewer.title.innerHTML = d.name;
