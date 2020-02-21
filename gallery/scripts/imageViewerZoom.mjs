@@ -1,5 +1,7 @@
 import { imageViewer } from "./imageViewer.mjs";
 
+const epsilon = 1e-4;
+
 export function doubleClick() {
   imageViewer.zoomedIn = !imageViewer.zoomedIn;
   imageViewer.image.style.transition = "";
@@ -7,19 +9,59 @@ export function doubleClick() {
   return imageViewer.zoomedIn;
 }
 
-export function startZoom() {
+let startDistance;
+
+export function startZoom(pointers) {
+  const startPositions = [];
+  for (const pointer of pointers) {
+    startPositions.push([pointer.startX, pointer.startY]);
+  }
+  const centrePos = avg(...startPositions);
+  startDistance = getDistance(startPositions, centrePos);
+
+  const translateStr = "translate(" + centrePos[0] + "px, " + centrePos[1] + "px)";
+  imageViewer.image.style.transform = translateStr;
+  
   imageViewer.image.style.transition = "initial";
+  imageViewer.zoomedIn = true;
 }
 
-export function updateZoom(primaryPos, secondaryPos) {
-  const centrePos = avg(primaryPos, secondaryPos);
+export function updateZoom(pointers) {
+  let currentPositions = [];
+  for (const pointer of pointers) currentPositions.push(pointer.pos);
 
-  imageViewer.image.style.transform = "translate(" + centrePos[0] + "px, " + centrePos[1] + "px)";
+  const centrePos = avg(...currentPositions);
+  const currentDistance = getDistance(currentPositions, centrePos);
+  
+  imageViewer.currentScale = currentDistance / (startDistance * 2);
+  console.log(imageViewer.currentScale);
+
+  const translateStr = "translate(" + centrePos[0] + "px, " + centrePos[1] + "px)";
+  const scaleStr = "scale(" + imageViewer.currentScale + ")";
+
+  imageViewer.image.style.transform = translateStr + " " + scaleStr;
 }
 
-export function endZoom(primaryPos, secondaryPos) {
-  imageViewer.image.style.transform = "";
-  setTimeout(() => imageViewer.image.style.transition = "", 300);
+export function endZoom(pointers) {
+  if (imageViewer.currentScale <= 1) {
+    imageViewer.zoomedIn = false;
+    imageViewer.image.style.transition = "";
+    imageViewer.image.style.transform = "";
+    startDistance = 0;
+  }
+  
+  let positions = [];
+  for (const pointer of pointers) positions.push(pointer.pos);
+}
+
+function getDistance(positions, _centre) {
+  const centre = _centre || avg(...positions);
+  let distances = [];
+  for (const pos of positions) {
+    const distance = Math.hypot(pos[0] - centre[0], pos[1] - centre[1]);
+    distances.push(distance);
+  }
+  return avg(...distances);
 }
 
 function avg(...values) {
@@ -30,7 +72,7 @@ function avg(...values) {
     }
     return result / values.length;
   } else {
-    if (Array.isArray(values)) {
+    if (Array.isArray(values[0])) {
       let results = [];
       for (const v of values) {
         for (let i = 0; i < v.length; i++) {

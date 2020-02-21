@@ -16,7 +16,8 @@ export const imageViewer = {
     info: viewer.querySelector(".info")
   },
   title: viewer.querySelector(".img-title"),
-  zoomedIn: false
+  zoomedIn: false,
+  currentScale: 1
 }
 
 imageViewer.buttons.close.onclick = closeImageViewer;
@@ -47,6 +48,7 @@ function closeImageViewer() {
   viewer.style.left = originX + "px";
   viewer.style.top = originY + "px";
   document.onkeydown = null;
+  imageViewer.zoomedIn = false;
 }
 
 function loadImageViewer(d) {
@@ -105,8 +107,9 @@ function loadControls(img, d) {
   loadSlider(img, positions => {
     let pointers = [];
     for (const pointer in positions) {
-      pointers.push(positions[pointer]);
+      if (positions[pointer].down) pointers.push(positions[pointer]);
     }
+
     if (pointers.length === 1) {
       locked = null;
       clearTimeout(clickedTimeout);
@@ -124,12 +127,15 @@ function loadControls(img, d) {
         if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
         opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.visibility = imageViewer.buttons.prev.style.visibility = "hidden", 300);
       }
+    } else {
+      //startZoom(pointers);
     }
   }, positions => {
     let pointers = [];
     for (const pointer in positions) {
-      pointers.push(positions[pointer]);
+      if (positions[pointer].down) pointers.push(positions[pointer]);
     }
+    
     if (pointers.length === 1) {
       if (imageViewer.zoomedIn) {
         //pan zoomed in image
@@ -142,17 +148,19 @@ function loadControls(img, d) {
         const translateValue = (locked === "Y") ? pos[1] : pos[0];
         img.style.transform = "translate" + locked + "(" + translateValue + "px)";
       }
+    } else {
+      //updateZoom(pointers);
     }
-  }, positions => {
+  }, (positions) => {
     let pointers = [];
     for (const pointer in positions) {
-      pointers.push(positions[pointer]);
+      if (positions[pointer].down) pointers.push(positions[pointer]);
     }
-    if (pointers.length === 1) {
+    if (pointers.length < 1) {
       if (imageViewer.zoomedIn) {
         //
       } else {
-        const pos = pointers[0].pos;
+        const pos = positions["primary"].pos;
         if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
           animatedCloseImageViewer(Math.sign(pos[1]));
         } else {
@@ -169,6 +177,12 @@ function loadControls(img, d) {
           opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = "", 300);
         }
       }
+    } else {
+      //endZoom(pointers);
+      for (const pointer of pointers) {
+        pointer.down = false;
+      }
+      imageViewer.image.style = "";
     }
   });
 

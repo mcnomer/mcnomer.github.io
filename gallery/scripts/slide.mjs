@@ -17,12 +17,12 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
     e.preventDefault();
     requestAnimationFrame(() => {
       const [x, y] = [e.clientX, e.clientY];
-      if (e.isPrimary) {
-        positions["primary"].pos = [x - positions["primary"].startX, y - positions["primary"].startY];
-      } else {
-        positions[e.pointerId].pos = [x - positions[e.pointerId].startX, y - positions[e.pointerId].startY];
+      let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
+      if (!positions[pointerName]) return;
+      if (positions[pointerName].down) {
+        positions[pointerName].pos = [x - positions[pointerName].startX, y - positions[pointerName].startY];
+        moveCallback(positions);
       }
-      moveCallback(positions);
     });
   }
 
@@ -30,13 +30,11 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
     e.preventDefault();
     requestAnimationFrame(() => {
       const [x, y] = [e.clientX, e.clientY];
-      if (e.isPrimary) {
-        positions["primary"].pos = [x - positions["primary"].startX, y - positions["primary"].startY];
-        positions["primary"].down = false;
-      } else {
-        positions[e.pointerId].pos = [x - positions[e.pointerId].startX, y - positions[e.pointerId].startY];
-        positions[e.pointerId].down = false;
+      let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
+      if (positions[pointerName].startX && positions[pointerName].startY) {
+        positions[pointerName].pos = [x - positions[pointerName].startX, y - positions[pointerName].startY];
       }
+      positions[pointerName].down = false;
       endCallback(positions);
     });
     if (e.isPrimary) {
@@ -48,13 +46,12 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
 
   function handleDown(e) {
     e.preventDefault();
-    console.log(e.pointerId);
     requestAnimationFrame(() => {
       let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
       if (!positions[pointerName]) {
         positions[pointerName] = {};
       }
-      [positions[pointerName].startX, positions[pointerName].startY] = [e.clientX, e.clientY];
+      positions[pointerName].pos = [positions[pointerName].startX, positions[pointerName].startY] = [e.clientX, e.clientY];
       positions[pointerName].down = true;
       startCallback(positions);
     });
