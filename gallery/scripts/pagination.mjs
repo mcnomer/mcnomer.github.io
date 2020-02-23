@@ -1,9 +1,8 @@
 import { createElement } from "./createElement.mjs";
-import { switchImage } from "./imageViewer.mjs"
 
 const imageViewerPagination = document.querySelector(".imageviewer .pagination");
 
-export function loadPagination(d) {
+export function loadPagination(d, switchImage) {
   while (imageViewerPagination.firstChild) imageViewerPagination.firstChild.remove();
   if (d.pages.length <= 1) return;
   for (let i = 0; i < d.pages.length; i++) {

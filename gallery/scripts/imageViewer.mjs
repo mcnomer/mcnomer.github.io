@@ -1,8 +1,7 @@
 import { createElement } from "./createElement.mjs";
-import { loadSlider } from "./slide.mjs";
 import { newGrowButton } from "./buttons.mjs";
 import { loadPagination, updatePagination } from "./pagination.mjs";
-import { doubleClick, startZoom, updateZoom, endZoom } from "./imageViewerZoom.mjs";
+import { loadImageViewerGestures } from "./imageViewerGestures.mjs";
 
 const viewer = document.querySelector(".imageviewer");
 
@@ -17,7 +16,9 @@ export const imageViewer = {
   },
   title: viewer.querySelector(".img-title"),
   zoomedIn: false,
-  currentScale: 1
+  currentScale: 1,
+  centreX: 0,
+  centreY: 0
 }
 
 imageViewer.buttons.close.onclick = closeImageViewer;
@@ -52,7 +53,7 @@ function closeImageViewer() {
 }
 
 function loadImageViewer(d) {
-  loadPagination(d);
+  loadPagination(d, switchImage);
   loadImage(d, 0);
 }
 
@@ -72,10 +73,13 @@ function loadImage(d, i) {
     document.body.style.overflow = "hidden";
   }, 300);
 
-  loadControls(img, d);
+  imageViewer.currentScale = 1;
+  imageViewer.centreX = 0;
+  imageViewer.centreY = 0;
+  loadControls(d);
 }
 
-export function switchImage(d, diff = 0) {
+function switchImage(d, diff = 0) {
   if (d.pages.length <= 1) return;
   imageViewer.image.style.transition = "transform 0.3s ease-out";
   imageViewer.image.style.transform = "translateX(" + 100 * Math.sign(diff) + "vw)";
@@ -87,104 +91,20 @@ export function switchImage(d, diff = 0) {
   }, 300);
 }
 
-function loadControls(img, d) {
-  let showArrows = false;
-  let opacityTimeoutHandle;
+function loadControls(d) {
+  imageViewer.showArrows = false;
+
+  loadImageViewerGestures(d, animatedCloseImageViewer, switchImage);
+
   if (d.pages.length <= 1) {
     imageViewer.buttons.next.style.display = imageViewer.buttons.prev.style.display = "none";
-    showArrows = false;
+    imageViewer.showArrows = false;
   } else {
     imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
     imageViewer.buttons.prev.onclick = () => switchImage(d, 1);
     imageViewer.buttons.next.onclick = () => switchImage(d, -1);
-    showArrows = true;
+    imageViewer.showArrows = true;
   }
-
-  let locked = null;
-  let clickedRecently = false;
-  let clickedTimeout;
-
-  loadSlider(img, positions => {
-    let pointers = [];
-    for (const pointer in positions) {
-      if (positions[pointer].down) pointers.push(positions[pointer]);
-    }
-
-    if (pointers.length === 1) {
-      locked = null;
-      clearTimeout(clickedTimeout);
-      if (clickedRecently) {
-        clickedRecently = false;
-        imageViewer.zoomedIn = doubleClick(img);
-      } else {
-        clickedRecently = true;
-        clickedTimeout = setTimeout(() => {clickedRecently = false}, 300);
-        img.style.transition = "initial";
-      }
-
-      if (showArrows) {
-        imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
-        if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-        opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.visibility = imageViewer.buttons.prev.style.visibility = "hidden", 300);
-      }
-    } else {
-      //startZoom(pointers);
-    }
-  }, positions => {
-    let pointers = [];
-    for (const pointer in positions) {
-      if (positions[pointer].down) pointers.push(positions[pointer]);
-    }
-    
-    if (pointers.length === 1) {
-      if (imageViewer.zoomedIn) {
-        //pan zoomed in image
-      } else {
-        const pos = pointers[0].pos;
-        if (Math.abs(pos[0] - pos[1]) > 3) {
-          if (locked === null) locked = (Math.abs(pos[0]) > Math.abs(pos[1])) ? "X" : "Y";
-        }
-    
-        const translateValue = (locked === "Y") ? pos[1] : pos[0];
-        img.style.transform = "translate" + locked + "(" + translateValue + "px)";
-      }
-    } else {
-      //updateZoom(pointers);
-    }
-  }, (positions) => {
-    let pointers = [];
-    for (const pointer in positions) {
-      if (positions[pointer].down) pointers.push(positions[pointer]);
-    }
-    if (pointers.length < 1) {
-      if (imageViewer.zoomedIn) {
-        //
-      } else {
-        const pos = positions["primary"].pos;
-        if (Math.abs(pos[1]) > window.innerHeight / 4 && locked === "Y") {
-          animatedCloseImageViewer(Math.sign(pos[1]));
-        } else {
-          if (Math.abs(pos[0]) > window.innerWidth / 4 && d.pages.length > 1  && locked === "X") {
-            switchImage(d, Math.sign(pos[0]));
-          } else {
-            img.style = "";
-          }
-        }
-        if (showArrows) {
-          imageViewer.buttons.next.style = imageViewer.buttons.prev.style = "";
-          imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = 0;
-          if (opacityTimeoutHandle) clearTimeout(opacityTimeoutHandle);
-          opacityTimeoutHandle = setTimeout(() => imageViewer.buttons.next.style.opacity = imageViewer.buttons.prev.style.opacity = "", 300);
-        }
-      }
-    } else {
-      //endZoom(pointers);
-      for (const pointer of pointers) {
-        pointer.down = false;
-      }
-      imageViewer.image.style = "";
-    }
-  });
 
   imageViewer.title.innerHTML = d.name;
 
@@ -220,7 +140,7 @@ function loadControls(img, d) {
   }
 }
 
-function animatedCloseImageViewer(direction = 0) {
+export function animatedCloseImageViewer(direction = 0) {
   imageViewer.image.style.transition = "transform 0.15s ease-out";
   imageViewer.image.style.transform = "translateY(" + 100 * Math.sign(direction) + "vh)";
   setTimeout(closeImageViewer, 100);

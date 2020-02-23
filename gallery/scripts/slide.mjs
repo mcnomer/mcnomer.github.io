@@ -1,46 +1,34 @@
-let events = {
-  move: "pointermove",
-  end: "pointerup",
-  cancel: "pointercancel"
-};
-
-if (!window.PointerEvent) {
-  events.move = "touchmove";
-  events.end = "touchend";
-  events.cancel = "touchcancel";
-}
-
 export function loadSlider(slider, startCallback, moveCallback, endCallback) {
-  let positions = {};
+  let pointers = {};
 
   function handleMove(e) {
     e.preventDefault();
     requestAnimationFrame(() => {
-      const [x, y] = [e.clientX, e.clientY];
       let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
-      if (!positions[pointerName]) return;
-      if (positions[pointerName].down) {
-        positions[pointerName].pos = [x - positions[pointerName].startX, y - positions[pointerName].startY];
-        moveCallback(positions);
-      }
+      if (!pointers[pointerName]) return;
+      if (!pointers[pointerName].down) return;
+
+      const [x, y] = [e.clientX, e.clientY];
+      pointers[pointerName].pos = [x, y];
+      pointers[pointerName].diff = [x - pointers[pointerName].startX, y - pointers[pointerName].startY];
+      moveCallback(pointers);
     });
   }
 
   function handleEnd(e) {
     e.preventDefault();
     requestAnimationFrame(() => {
-      const [x, y] = [e.clientX, e.clientY];
       let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
-      if (positions[pointerName].startX && positions[pointerName].startY) {
-        positions[pointerName].pos = [x - positions[pointerName].startX, y - positions[pointerName].startY];
-      }
-      positions[pointerName].down = false;
-      endCallback(positions);
+      const [x, y] = [e.clientX, e.clientY];
+      pointers[pointerName].pos = [x, y];
+      pointers[pointerName].diff = [x - pointers[pointerName].startX, y - pointers[pointerName].startY];
+      pointers[pointerName].down = false;
+      endCallback(pointers);
     });
     if (e.isPrimary) {
-      document.removeEventListener(events.move, handleMove, true);
-      document.removeEventListener(events.end, handleEnd, true);
-      document.removeEventListener(events.cancel, handleEnd, true);
+      document.removeEventListener("pointermove", handleMove, true);
+      document.removeEventListener("pointerup", handleEnd, true);
+      document.removeEventListener("pointercancel", handleEnd, true);
     }
   }
 
@@ -48,24 +36,19 @@ export function loadSlider(slider, startCallback, moveCallback, endCallback) {
     e.preventDefault();
     requestAnimationFrame(() => {
       let pointerName = (e.isPrimary) ? "primary" : e.pointerId;
-      if (!positions[pointerName]) {
-        positions[pointerName] = {};
-      }
-      positions[pointerName].pos = [positions[pointerName].startX, positions[pointerName].startY] = [e.clientX, e.clientY];
-      positions[pointerName].down = true;
-      startCallback(positions);
+      if (!pointers[pointerName]) pointers[pointerName] = {};
+
+      pointers[pointerName].pos = [pointers[pointerName].startX, pointers[pointerName].startY] = [e.clientX, e.clientY];
+      pointers[pointerName].diff = [0, 0];
+      pointers[pointerName].down = true;
+      startCallback(pointers);
     });
     if (e.isPrimary) {
-      document.addEventListener(events.move, handleMove, true);
-      document.addEventListener(events.end, handleEnd, true);
-      document.addEventListener(events.cancel, handleEnd, true);
+      document.addEventListener("pointermove", handleMove, true);
+      document.addEventListener("pointerup", handleEnd, true);
+      document.addEventListener("pointercancel", handleEnd, true);
     }
   }
 
-  if (window.PointerEvent) {
-    slider.onpointerdown = handleDown;
-  } else {
-    slider.ontouchstart = handleDown;
-    slider.onmousedown = handleDown;
-  }
+  slider.onpointerdown = handleDown;
 }
