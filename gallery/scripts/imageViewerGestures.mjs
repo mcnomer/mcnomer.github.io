@@ -1,6 +1,6 @@
 import { imageViewer } from "./imageViewer.mjs";
 import { loadSlider } from "./slide.mjs";
-import { doubleClick, startZoom, updateZoom, endZoom, startPan, updatePan, endPan } from "./imageViewerZoom.mjs";
+import { doubleClick, startZoom, updateZoom, endZoom, startPan, updatePan, endPan, wheelZoom } from "./imageViewerZoom.mjs";
 
 export function loadImageViewerGestures(d, animatedCloseImageViewer, switchImage) {
   let locked = null;
@@ -43,7 +43,7 @@ export function loadImageViewerGestures(d, animatedCloseImageViewer, switchImage
         }
     
         const translateValue = (locked === "Y") ? diff[1] : diff[0];
-        imageViewer.image.style.transform = "translate" + locked + "(" + translateValue + "px)";
+        imageViewer.image.style.transform = `translate${locked}(${translateValue}px)`;
       }
     } else {
       updateZoom(currentPointers);
@@ -90,5 +90,7 @@ export function loadImageViewerGestures(d, animatedCloseImageViewer, switchImage
         pointer.down = false;
       }
     }
-  }); 
+  });
+
+  //imageViewer.image.onwheel = wheelZoom;
 }

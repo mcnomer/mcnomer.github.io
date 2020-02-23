@@ -5,7 +5,7 @@ export function doubleClick() {
   imageViewer.image.style.transition = "";
   imageViewer.currentScale = (imageViewer.zoomedIn) ? 1.5 : 1;
   imageViewer.centreX = imageViewer.centreY = 0;
-  const scaleStr = "scale(" + imageViewer.currentScale + ")";
+  const scaleStr = `scale(${imageViewer.currentScale})`;
   imageViewer.image.style.transform = scaleStr;
   return imageViewer.zoomedIn;
 }
@@ -40,9 +40,11 @@ export function updateZoom(pointers) {
   const currentDistance = getDistance(currentPositions, pointerCentrePos);
   imageViewer.currentScale = Math.min(startScale * (currentDistance / startDistance), 8);
   
+  const imageCentrePos = [((window.innerWidth / 2) + imageStartCentre[0]), ((window.innerHeight / 2) + imageStartCentre[1])];
+
   const scaleChange = (imageViewer.currentScale - startScale) / startScale;
-  const scaleOffsetX = -((startCentre[0] - ((window.innerWidth / 2) + imageStartCentre[0])) * scaleChange);
-  const scaleOffsetY = -((startCentre[1] - ((window.innerHeight / 2) + imageStartCentre[1])) * scaleChange);
+  const scaleOffsetX = -((startCentre[0] - imageCentrePos[0]) * scaleChange);
+  const scaleOffsetY = -((startCentre[1] - imageCentrePos[1]) * scaleChange);
 
   const pointerCentreDiff = [pointerCentrePos[0] - startCentre[0], pointerCentrePos[1] - startCentre[1]];
 
@@ -51,8 +53,8 @@ export function updateZoom(pointers) {
 
   [imageViewer.centreX, imageViewer.centreY] = [translateX, translateY];
 
-  const translateStr = "translate(" + translateX + "px, " + translateY + "px)";
-  const scaleStr = "scale(" + imageViewer.currentScale + ")";
+  const translateStr = `translate(${translateX}px, ${translateY}px)`;
+  const scaleStr = `scale(${imageViewer.currentScale})`;
 
   imageViewer.image.style.transform = translateStr + " " + scaleStr;
 }
@@ -82,18 +84,20 @@ export function startPan() {
 
 export function updatePan(pointer) {
   let [panX, panY] = pointer.diff;
-  panX = Math.max(Math.min(startImageX + panX, window.innerWidth * imageViewer.currentScale / 2), -window.innerWidth * imageViewer.currentScale / 2);
-  panY = Math.max(Math.min(startImageY + panY, window.innerHeight * imageViewer.currentScale / 2), -window.innerHeight * imageViewer.currentScale / 2);
+  const halfImageWidth = window.innerWidth * imageViewer.currentScale / 2;
+  const halfImageHeight = window.innerHeight * imageViewer.currentScale / 2;
+  panX = Math.max(Math.min(startImageX + panX, halfImageWidth), -halfImageWidth);
+  panY = Math.max(Math.min(startImageY + panY, halfImageHeight), -halfImageHeight);
   [imageViewer.centreX, imageViewer.centreY] = [panX, panY];
 
-  const translateStr = "translate(" + panX + "px, " + panY + "px)";
-  const scaleStr = "scale(" + imageViewer.currentScale + ")";
+  const translateStr = `translate(${panX}px, ${panY}px)`;
+  const scaleStr = `scale(${imageViewer.currentScale})`;
 
   imageViewer.image.style.transform = translateStr + " " + scaleStr;
 }
 
 export function endPan() {
-  imageStartCentre = [startImageX, startImageY] = [imageViewer.centreX, imageViewer.centreY];
+  [startImageX, startImageY] = [imageViewer.centreX, imageViewer.centreY];
 }
 
 function getDistance(positions, _centre) {
@@ -130,5 +134,33 @@ function avg(...values) {
       }
       return results;
     }
+  }
+}
+
+export function wheelZoom(e) {
+  e.preventDefault();
+
+  const currentScale = e.deltaY * -0.001;
+  imageViewer.currentScale = Math.max(Math.min(imageViewer.currentScale + currentScale, 8), 1);
+  
+  if (imageViewer.currentScale <= 1) {
+    imageViewer.zoomedIn = false;
+    imageViewer.image.style = "";
+    [imageViewer.centreX, imageViewer.centreY] = [0, 0];
+  } else {
+    imageViewer.zoomedIn = true;
+
+    const imageCentrePosX = (window.innerWidth / 2) + imageViewer.centreX;
+    const imageCentrePosY = (window.innerHeight / 2) + imageViewer.centreY;
+    const [x, y] = [e.clientX - imageCentrePosX, e.clientY - imageCentrePosY];
+  
+    const scaleOffsetX = -(x * currentScale);
+    const scaleOffsetY = -(y * currentScale);
+    console.log(x, y);
+
+    [imageViewer.centreX, imageViewer.centreY] = [scaleOffsetX, scaleOffsetY];
+    const translateStr = `translate(${scaleOffsetX}px, ${scaleOffsetY}px)`;
+    const scaleStr = `scale(${imageViewer.currentScale})`;
+    imageViewer.image.style.transform = translateStr + " " + scaleStr;
   }
 }
