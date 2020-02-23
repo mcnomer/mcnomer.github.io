@@ -141,22 +141,22 @@ export function wheelZoom(e) {
   e.preventDefault();
 
   const currentScale = e.deltaY * -0.001;
-  imageViewer.currentScale = Math.max(Math.min(imageViewer.currentScale + currentScale, 8), 1);
+  imageViewer.currentScale = Math.max(Math.min(imageViewer.currentScale + currentScale, 4), 1);
   
   if (imageViewer.currentScale <= 1) {
     imageViewer.zoomedIn = false;
     imageViewer.image.style = "";
     [imageViewer.centreX, imageViewer.centreY] = [0, 0];
-  } else {
+  } else if (imageViewer.currentScale < 4 || (imageViewer.currentScale === 4 && currentScale < 0)) {
     imageViewer.zoomedIn = true;
 
     const imageCentrePosX = (window.innerWidth / 2) + imageViewer.centreX;
     const imageCentrePosY = (window.innerHeight / 2) + imageViewer.centreY;
     const [x, y] = [e.clientX - imageCentrePosX, e.clientY - imageCentrePosY];
   
-    const scaleOffsetX = -(x * currentScale);
-    const scaleOffsetY = -(y * currentScale);
-    console.log(x, y);
+    const scale = currentScale / (imageViewer.currentScale - currentScale);
+    const scaleOffsetX = imageViewer.centreX - x * scale;
+    const scaleOffsetY = imageViewer.centreY - y * scale;
 
     [imageViewer.centreX, imageViewer.centreY] = [scaleOffsetX, scaleOffsetY];
     const translateStr = `translate(${scaleOffsetX}px, ${scaleOffsetY}px)`;
