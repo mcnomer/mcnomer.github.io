@@ -4,6 +4,7 @@ import { loadPagination, updatePagination } from "./pagination.mjs";
 import { loadImageViewerGestures } from "./imageViewerGestures.mjs";
 
 const viewer = document.querySelector(".imageviewer");
+const pageTitle = document.querySelector("title");
 
 export const imageViewer = {
   viewer: viewer,
@@ -18,20 +19,23 @@ export const imageViewer = {
   zoomedIn: false,
   currentScale: 1,
   centreX: 0,
-  centreY: 0
+  centreY: 0,
+  open: false
 }
 
-imageViewer.buttons.close.onclick = closeImageViewer;
+imageViewer.buttons.close.onclick = () => history.go(-1);
 
 let originX = 0, originY = 0;
 let pageIndex = 0;
 
-export function openImageViewer(e, d) {
+export function openImageViewer(e, d, pushHistory = true) {
   pageIndex = 0;
   [originX, originY] = [e.clientX, e.clientY];
   viewer.style = "";
   viewer.style.left = originX + "px";
   viewer.style.top = originY + "px";
+  imageViewer.open = true;
+  if (pushHistory) window.history.pushState([d, 0], "", d.pages[0].file);
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       loadImageViewer(d);
@@ -43,13 +47,16 @@ export function openImageViewer(e, d) {
   });
 }
 
-function closeImageViewer() {
+function closeImageViewer(pushHistory = true) {
   document.body.style.overflow = viewer.style = "";
   viewer.style.transitionProperty = "width, height, left, top";
   viewer.style.left = originX + "px";
   viewer.style.top = originY + "px";
   document.onkeydown = null;
   imageViewer.zoomedIn = false;
+  imageViewer.open = false;
+  pageTitle.innerHTML = "Gallery";
+  if (pushHistory) window.history.pushState(null, "", "/gallery/");
 }
 
 function loadImageViewer(d) {
@@ -61,6 +68,7 @@ function loadImage(d, i) {
   if (imageViewer.image) imageViewer.image.remove();
   const page = d.pages[i];
   const img = imageViewer.image = createElement("img", "full-img noselect");
+  window.history.replaceState([d, i], "", page.file);
 
   img.src = getFullImageSrc(page);
   img.style.visibility = "hidden";
@@ -107,6 +115,7 @@ function loadControls(d) {
   }
 
   imageViewer.title.innerHTML = d.name;
+  pageTitle.innerHTML = "Gallery | " + d.name;
 
   const desc = d.pages[pageIndex].description;
   if (desc) {
@@ -156,4 +165,19 @@ function getFullImageSrc(page) {
     }
   }
   return page.file;
+}
+
+window.onpopstate = e => {
+  if (e.state) {
+    if (imageViewer.open) {
+      loadImage(e.state[0], e.state[1]);
+    } else {
+      openImageViewer({
+        clientX: Math.floor(window.innerWidth/2),
+        clientY: Math.floor(window.innerHeight/2)
+      }, e.state[0], false);
+    }
+  } else {
+    if (imageViewer.open) closeImageViewer(false);
+  }
 }
