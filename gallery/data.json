@@ -1,5 +1,20 @@
 [
   {
+    "name": "Blanket Render",
+    "pages": [
+      {
+        "file": "/gallery/images/full/blanket.jpg",
+        "thumb": "/gallery/images/thumbs/blanket.jpg",
+        "description": "One of my first 3D renders. I'm quite proud of how it turned out and surprised by the number of good free textures available."
+      },
+      {
+        "file": "/gallery/images/full/first_render.jpg",
+        "thumb": "/gallery/images/thumbs/first_render.jpg",
+        "description": "My actual first render."
+      }
+    ]
+  },
+  {
     "name": "Untitled 2",
     "pages": [
       {
