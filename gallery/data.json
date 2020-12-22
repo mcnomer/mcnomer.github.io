@@ -4,11 +4,11 @@
     "pages": [
       {
         "file": "/gallery/images/full/flower_field.jpg",
-        "thumb": "/gallery/images/thumbs/flower_field.jpg"
+        "thumb": "/gallery/images/thumbs/flower_field_thumb.jpg"
       },
       {
         "file": "/gallery/images/full/flower_model.jpg",
-        "thumb": "/gallery/images/thumbs/flower_model.jpg"
+        "thumb": "/gallery/images/thumbs/flower_model_thumb.jpg"
       }
     ]
   },
@@ -17,7 +17,7 @@
     "pages": [
       {
         "file": "/gallery/images/full/living_room.jpg",
-        "thumb": "/gallery/images/thumbs/living_room.jpg",
+        "thumb": "/gallery/images/thumbs/living_room_thumb.jpg",
         "description": "Lockdown clearly took its toll on me here, as I spent weeks creating a 3D model of my living room. At least now I'm decent with Blender."
       },
       {
