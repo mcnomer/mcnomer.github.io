@@ -16,29 +16,32 @@ html {
 
 body {
   min-height: 100%;
-  color: #f2b9b3;
+  color: #e1ecff;
   background: #1b2740;
   font-size: 1.2rem;
   overflow-x: hidden;
 }
 
+.o-button {
+  background: #3d4657;
+  border-radius: 50%;
+  transition: background-color 150ms ease-in-out;
+}
+
+.o-button:hover,
+.o-button:active {
+  background: #566177;
+}
+
 .back {
   width: 2rem;
   height: 2rem;
-  background: #f2b9b3;
-  border-radius: 50%;
   position: sticky;
   top: 1rem;
   left: 1rem;
   padding: 0.5rem;
-  transition: background-color 0.2s ease-in-out;
   box-shadow: 0.5rem 0.5rem 0.5rem rgba(0,0,0,0.2);
   z-index: 1;
-}
-
-.back:hover,
-.back:active {
-  background: #db877d;
 }
 
 .images {
@@ -51,11 +54,11 @@ body {
 
 .title {
   margin: 3vh auto;
-  color: #ffecec;
+  color: #bf616a;
   font-family: "Raleway", sans-serif;
   font-size: 4rem;
   font-weight: 300;
-  border-bottom: 1px solid #5F6673;
+  border-bottom: 1px solid #3d4657;
   padding: 1rem;
   text-align: center;
 }
@@ -66,20 +69,19 @@ body {
   padding: 0 0.25em;
 }
 
-.column img {
+.images img {
   margin-top: 0.5em;
   vertical-align: middle;
   width: 100%;
   height: auto;
   box-shadow: 0.2em 0.2em 0.3em rgba(0,0,0,0.4);
   outline: none;
-  background: #9bb7d4;
+  background: #88add0;
   cursor: pointer;
 }
 
-.images img:nth-of-type(4n + 1) {background: #d49bd4;}
-.images img:nth-of-type(4n + 2) {background: #d4b89b;}
-.images img:nth-of-type(4n + 3) {background: #9bd49b;}
+.images img:nth-of-type(3n + 1) {background: #a4a3e2;}
+.images img:nth-of-type(3n + 2) {background: #cb97c1;}
 
 .imageviewer {
   position: fixed;
@@ -99,18 +101,10 @@ body {
   width: 2rem;
   height: 2rem;
   padding: 0.2rem;
-  background: #f2b9b3;
-  border-radius: 50%;
   position: absolute;
   top: 1rem;
   left: 1rem;
-  transition: background-color 0.2s ease-in-out;
   z-index: 10;
-}
-
-.imageviewer .close:hover,
-.imageviewer .close:active {
-  background: #db877d;
 }
 
 .imageviewer .control-btn {
@@ -152,18 +146,18 @@ body {
   height: 0.7rem;
   border-radius: 50%;
   margin: 0 0.5rem;
-  background: rgba(242, 220, 201, 0.5);
+  background: rgba(225, 236, 255, 0.5);
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
   transition: background-color 0.1s ease-in-out;
 }
 
 .imageviewer .pagination button:hover {
-  background: rgba(242, 220, 201, 0.7);
+  background: rgba(225, 236, 255, 0.7);
 }
 
 .imageviewer .pagination button[selected],
 .imageviewer .pagination button:active {
-  background: #f2dcc9;
+  background: #e1ecff;
 }
 
 
@@ -173,7 +167,7 @@ body {
   right: 1rem;
   border-radius: 1.5rem;
   background: none;
-  border: 2px solid #f2dcc9;
+  border: 2px solid #e1ecff;
   max-width: 3rem;
   max-height: 3rem;
   transition: max-width 0.3s ease-in-out,
@@ -186,7 +180,7 @@ body {
 
 .imageviewer .info:not([open]):hover,
 .imageviewer .info:not([open]):active {
-  background: rgba(242, 220, 201, 0.3);
+  background: rgba(225, 236, 255, 0.3);
 }
 
 .imageviewer .info[open] {
@@ -208,12 +202,12 @@ body {
 }
 
 .imageviewer .info p a {
-  color: white;
+  color: #e1ecff;
 }
 
 .imageviewer .info p a:hover,
 .imageviewer .info p a:active {
-  color: #e9d1ce;
+  color: #e1ecff;
 }
 
 .imageviewer .info span {
@@ -224,7 +218,7 @@ body {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
-  color: #f2dcc9;
+  color: #e1ecff;
   font-size: 2rem;
   pointer-events: none;
 }
@@ -245,7 +239,6 @@ body {
   bottom: 0.5rem;
   left: 1rem;
   font-size: calc(2rem + 2vw);
-  color: #f2dcc9;
 }
 
 .imageviewer .full-img {
@@ -262,25 +255,24 @@ body {
 }
 
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: #1b2740;
+  background: #121317;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffecec;
+  background: #e1ecff;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d8c5c5;
+  background: #d8dee9;
 }
 
 ::selection {
-  background: rgba(201, 224, 242, 0.3);
+  background: rgba(94, 129, 172, 0.3);
 }
 
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
@@ -290,6 +282,6 @@ body {
   width: 100vw;
   height: 100vh;
   background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
-  background-color: #1b2740;
+  background-color: #121317;
   z-index: -1;
 }

@@ -14,7 +14,7 @@ html {
 body {
   height: 100%;
   color: #e1ecff;
-  background: #1a1c22;
+  background: #121317;
 }
 
 main {
@@ -146,7 +146,7 @@ main {
 }
 
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: #1a1c22;
+  background: #121317;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -166,6 +166,6 @@ main {
   width: 100vw;
   height: 100vh;
   background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
-  background-color: #1a1c22;
+  background-color: #121317;
   z-index: -1;
 }
