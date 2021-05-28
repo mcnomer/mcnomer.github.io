@@ -13,8 +13,8 @@ html {
 
 body {
   height: 100%;
-  color: #f2b9b3;
-  background: #1b2740;
+  color: #e1ecff;
+  background: #1a1c22;
 }
 
 main {
@@ -31,7 +31,7 @@ main {
 }
 
 .title {
-  color: #ffecec;
+  color: #bf616a;
   font-family: "Raleway", sans-serif;
   font-size: calc(4rem + 4vw);
   font-weight: 300;
@@ -70,21 +70,26 @@ main {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: #f2dcc9;
-  background: hsl(var(--h), var(--s), var(--l));
+  background: #ffffff;
   padding: 1rem;
   transition: background-color 0.1s ease-in-out;
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0,0,0,0.4);
 }
 
-.projects .gallery-link .icon {--h: 177; --s: 19%; --l: 75%;}
-.projects .testing-link .icon {--h: 29; --s: 34%; --l: 61%;}
-.projects .homequery-link .icon {--h: 2; --s: 19%; --l: 75%;}
+.projects .gallery-link .icon {background: #88add0;}
+.projects .testing-link .icon {background: #a4a3e2;}
+.projects .homequery-link .icon {background: #cb97c1;}
 
-.projects .link a:hover .icon,
-.projects .link a:active .icon {
-  background: hsl(var(--h), calc(var(--s) * 1.2), calc(var(--l) * 0.8));
-}
+.projects .gallery-link a:hover .icon,
+.projects .gallery-link a:active .icon {background: #6084a5;}
+.projects .testing-link a:hover .icon,
+.projects .testing-link a:active .icon {background: #7170af;}
+.projects .homequery-link a:hover .icon,
+.projects .homequery-link a:active .icon {background: #9c6b92;}
+
+.projects .gallery-link .desc h3 {color: #88add0;}
+.projects .testing-link .desc h3 {color: #a4a3e2;}
+.projects .homequery-link .desc h3 {color: #cb97c1;}
 
 .projects .link img {
   width: 100%;
@@ -114,7 +119,7 @@ main {
 
 .contacts a {
   display: block;
-  background: #5f6673;
+  background: #3d4657;
   padding: 0.5rem;
   border-radius: 50%;
   width: 2rem;
@@ -131,7 +136,7 @@ main {
 }
 
 .contacts a:hover, a:active {
-  background: #6a7996;
+  background: #566177;
 }
 
 ::-webkit-scrollbar, ::-webkit-scrollbar-thumb {
@@ -141,19 +146,19 @@ main {
 }
 
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: #1b2740;
+  background: #1a1c22;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffecec;
+  background: #e1ecff;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d8c5c5;
+  background: #d8dee9;
 }
 
 ::selection {
-  background: rgba(201, 224, 242, 0.3);
+  background: rgba(94, 129, 172, 0.3);
 }
 
 .background {
@@ -161,6 +166,6 @@ main {
   width: 100vw;
   height: 100vh;
   background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
-  background-color: #1b2740;
+  background-color: #1a1c22;
   z-index: -1;
 }
