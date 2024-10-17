@@ -91,5 +91,5 @@ export function loadImageViewerGestures(d, animatedCloseImageViewer, switchImage
       }
     }
   });
-
-} imageViewer.image.addEventListener('wheel', wheelZoom, {passive: true});
+  imageViewer.image.addEventListener('wheel', wheelZoom, {passive: true});
+}
