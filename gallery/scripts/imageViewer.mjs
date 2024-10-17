@@ -136,7 +136,7 @@ function loadControls(d) {
     if (e.code === "ArrowLeft") switchImage(d, 1);
     if (e.code === "ArrowRight") switchImage(d, -1);
     if (e.code === "ArrowUp") animatedCloseImageViewer(-1);
-    if (e.code === "ArrowDown") animatedCloseImageViewer(1);
+    if (e.code === "ArrowDown" || e.code === "Escape") animatedCloseImageViewer(1);
     if (e.code === "KeyI" || e.code === "Space") {
       if (infoOpen) {
         imageViewer.image.click();

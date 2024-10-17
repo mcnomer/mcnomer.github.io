@@ -1,5 +1,95 @@
 [
   {
+    "name": "Playing with Colour",
+    "pages": [
+      {
+        "file": "/gallery/images/full/colours/08.08.2024 - crooked.png",
+        "thumb": "/gallery/images/thumbs/colours/08.08.2024 - crooked.jpg"
+      },
+      {
+        "file": "/gallery/images/full/colours/03.08.2024 - green.png",
+        "thumb": "/gallery/images/thumbs/colours/03.08.2024 - green.jpg"
+      },
+      {
+        "file": "/gallery/images/full/colours/23.08.2024 - turquoise.png",
+        "thumb": "/gallery/images/thumbs/colours/23.08.2024 - turquoise.jpg"
+      },
+      {
+        "file": "/gallery/images/full/colours/04.08.2024 - blue.png",
+        "thumb": "/gallery/images/thumbs/colours/04.08.2024 - blue.jpg"
+      },
+      {
+        "file": "/gallery/images/full/colours/15.08.2024 - purple.png",
+        "thumb": "/gallery/images/thumbs/colours/15.08.2024 - purple.jpg"
+      },
+      {
+        "file": "/gallery/images/full/colours/22.06.2024 - ghost.png",
+        "thumb": "/gallery/images/thumbs/colours/22.06.2024 - ghost.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Wedges",
+    "pages": [
+      {
+        "file": "/gallery/images/full/wedges/26.06.2024 - dark.png",
+        "thumb": "/gallery/images/thumbs/wedges/26.06.2024 - dark.jpg"
+      },
+      {
+        "file": "/gallery/images/full/wedges/06.07.2024 - light.png",
+        "thumb": "/gallery/images/thumbs/wedges/06.07.2024 - light.jpg"
+      },
+      {
+        "file": "/gallery/images/full/wedges/07.07.2024 - faded.png",
+        "thumb": "/gallery/images/thumbs/wedges/07.07.2024 - faded.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Playing with Form",
+    "pages": [
+      {
+        "file": "/gallery/images/full/playing with form/15.07.2024 - rounded.png",
+        "thumb": "/gallery/images/thumbs/playing with form/15.07.2024 - rounded.jpg"
+      },
+      {
+        "file": "/gallery/images/full/playing with form/16.07.2024 - angular.png",
+        "thumb": "/gallery/images/thumbs/playing with form/16.07.2024 - angular.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Desert",
+    "pages": [
+      {
+        "file": "/gallery/images/full/desert.png",
+        "thumb": "/gallery/images/thumbs/desert.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Swirls",
+    "pages": [
+      {
+        "file": "/gallery/images/full/23.02.2024 - swirls.png",
+        "thumb": "/gallery/images/thumbs/23.02.2024 - swirls.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Realism-ish",
+    "pages": [
+      {
+        "file": "/gallery/images/full/05.03.2024 - match.png",
+        "thumb": "/gallery/images/thumbs/05.03.2024 - match.jpg"
+      },
+      {
+        "file": "/gallery/images/full/04.03.2024 - shell.png",
+        "thumb": "/gallery/images/thumbs/04.03.2024 - shell.jpg"
+      }
+    ]
+  },
+  {
     "name": "Flower Field",
     "pages": [
       {
@@ -106,7 +196,7 @@
     ]
   },
   {
-    "name": "Bloopyfloop",
+    "name": "Blob",
     "pages": [
       {
         "file": "/gallery/images/full/bloopyfloop.png",
@@ -136,16 +226,6 @@
     ]
   },
   {
-    "name": "Eye",
-    "pages": [
-      {
-        "file": "/gallery/images/full/eye.jpg",
-        "thumb": "/gallery/images/thumbs/eye.jpg",
-        "description": "I originally made this for a spotify playlist cover, but then switched it out for something else when it didn't quite fit."
-      }
-    ]
-  },
-  {
     "name": "Walking",
     "pages": [
       {
@@ -156,21 +236,6 @@
       {
         "file": "/gallery/images/full/walking_drawing.jpg",
         "description": "This is the old drawing I copied from. Drew it one bored night on a scrap piece of paper (means I don't have to waste the sketchbook)."
-      }
-    ]
-  },
-  {
-    "name": "Person at Night",
-    "pages": [
-      {
-        "file": "/gallery/images/full/night.jpg",
-        "thumb": "/gallery/images/thumbs/night.jpg",
-        "description": "This is actually the first thing I did digitally! I copied a different sketch I'd done with pencils, as a reference, and after a stupidly long time, I ended up with this."
-      },
-      {
-        "file": "/gallery/images/full/night_drawing.jpg",
-        "thumb": "/gallery/images/full/night_drawing.jpg",
-        "description": "Not sure where this came from, to be honest. I guess I was just bored, as usual, so picked up a pencil, then went over in pen."
       }
     ]
   }
