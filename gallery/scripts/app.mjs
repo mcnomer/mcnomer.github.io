@@ -3,6 +3,7 @@ import { openImageViewer } from "./imageViewer.mjs";
 
 const container = document.querySelector(".images");
 let oldNumCols;
+window.debugMode = false;
 
 async function loadImages() {
   const data = await fetch("/gallery/data.json")
@@ -36,7 +37,7 @@ function calculateColumns(data) {
       const d = data[i];
       const page = d.pages[0];
       let img = createElement("img");
-      console.log(page);
+      if (window.debugMode) console.log(page);
       img.src = page.thumb?.replace(" ", "%20") || page.file?.replace(" ", "%20");
       img.alt = d.name;
       img.onclick = e => openImageViewer(e, d);
