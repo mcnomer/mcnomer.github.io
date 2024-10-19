@@ -50,7 +50,8 @@
     "pages": [
       {
         "file": "/gallery/images/full/playing with form/15.07.2024 - rounded.png",
-        "thumb": "/gallery/images/thumbs/playing with form/15.07.2024 - rounded.jpg"
+        "thumb": "/gallery/images/thumbs/playing with form/15.07.2024 - rounded.jpg",
+        "description": "These are also part of that ten minute art challenge I was doing. They're nothing fancy but I was inspired by a Hilma af Klint exhibition I had recently gone to, especially the style in her series \"The Ten Largest\"."
       },
       {
         "file": "/gallery/images/full/playing with form/16.07.2024 - angular.png",
@@ -68,15 +69,6 @@
     ]
   },
   {
-    "name": "Swirls",
-    "pages": [
-      {
-        "file": "/gallery/images/full/23.02.2024 - swirls.png",
-        "thumb": "/gallery/images/thumbs/23.02.2024 - swirls.jpg"
-      }
-    ]
-  },
-  {
     "name": "Realism-ish",
     "pages": [
       {
@@ -86,6 +78,16 @@
       {
         "file": "/gallery/images/full/04.03.2024 - shell.png",
         "thumb": "/gallery/images/thumbs/04.03.2024 - shell.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Swirls",
+    "pages": [
+      {
+        "file": "/gallery/images/full/23.02.2024 - swirls.png",
+        "thumb": "/gallery/images/thumbs/23.02.2024 - swirls.jpg",
+        "description": "Just having some fun while trying to get back into art. This painting and quite a few others are part of a ten minute challenge to do a painting every day, within that time limit. It's a great way to just get something done, and I eventually relaxed the time limit once I started making things that needed more work."
       }
     ]
   },
@@ -108,7 +110,7 @@
       {
         "file": "/gallery/images/full/living_room.jpg",
         "thumb": "/gallery/images/thumbs/living_room_thumb.jpg",
-        "description": "Lockdown clearly took its toll on me here, as I spent weeks creating a 3D model of my living room. At least now I'm decent with Blender."
+        "description": "Lockdown clearly took its toll on me here, as I spent weeks creating a 3D recreation of my living room. At least now I'm decent with Blender."
       },
       {
         "file": "/gallery/images/full/first_render.jpg",
@@ -150,13 +152,12 @@
       }, 
       {
         "file": "/gallery/images/full/mannequin/blue.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/blue.jpg",
-        "description": "There's the RGB one with red, green and blue equally spaced, but also there's another with red, (cyan-y) blue, and yellow as the primary colours, which I guess makes sense since those are used for painting. I just don't particularly get why that's used for colour theory, but enough of my weird rambles, sorry - out of nowhere this turned into a blog oof."
+        "thumb": "/gallery/images/thumbs/mannequin/blue.jpg"
       }, 
       {
         "file": "/gallery/images/full/mannequin/pink.jpg",
         "thumb": "/gallery/images/thumbs/mannequin/pink.jpg",
-        "description": "Oh god, this picture was a struggle. I had to hold the mannequin with one hand from its base while trying to focus and take a picture with my phone, keeping the framing all the while. At least I got there, though after more tries than I'd like to admit."
+        "description": "Oh, this picture was a struggle. I had to hold the mannequin with one hand from its base while trying to focus and take a picture with my phone, keeping the framing all the while. Eventually I got there, though after more tries than I'd like to admit."
       }, 
       {
         "file": "/gallery/images/full/mannequin/red.jpg",
@@ -181,17 +182,7 @@
       {
         "file": "/gallery/images/full/neon.jpg",
         "thumb": "/gallery/images/thumbs/neon.jpg",
-        "description": "A quick doodle using a black canvas because the idea felt quite cool, and more neon colours felt fun to just mess about with."
-      }
-    ]
-  },
-  {
-    "name": "Bird",
-    "pages": [
-      {
-        "file": "/gallery/images/full/bird.jpg",
-        "thumb": "/gallery/images/thumbs/bird.jpg",
-        "description": "If you can't tell, this is supposed to be a bird I guess. This started in a bored doodle of a more cartoonish bird, but I decided to add some colour and kinda just wanted to throw some paint around, which I ended up doing in a more literal sense. I've never done things in this sort of style before and I've got to say, I rather like it."
+        "description": "A quick doodle using a black canvas because the idea felt quite cool, and more neon colours are fun to just mess about with."
       }
     ]
   },
@@ -211,7 +202,7 @@
       {
         "file": "/gallery/images/full/tree.jpg",
         "thumb": "/gallery/images/thumbs/tree.jpg",
-        "description": "THIS, oh my god, this bloody drawing. It took an utter age, plus as time went on, the fear of smudging it went exponentially up, and there are still visible smudge marks on it that I couldn't get rid of. At least it's sort of passable in looks, despite the dodgy scan making the contrast go all funny."
+        "description": "THIS, oh my god, this bloody drawing. It took so so long and, as time went on, the fear of smudging it went exponentially up (you can stil see visible smudge marks on the puddles that I couldn't get rid of). In the end, I'm pretty happy with how it turned out."
       }
     ]
   },
@@ -221,7 +212,7 @@
       {
         "file": "/gallery/images/full/paper_sky.jpg",
         "thumb": "/gallery/images/thumbs/paper_sky.jpg",
-        "description": "Made this for the cover of a spotify playlist, not quite sure why I had the idea honestly, so I suppose it's up to you to interpret it as you wish."
+        "description": "Made this for the cover of a spotify playlist. It's kinda creepy but I was a big fan of just that image of a huge eye appearing through the sky, and the pretty sunset colours."
       }
     ]
   },
@@ -231,11 +222,11 @@
       {
         "file": "/gallery/images/full/walking.jpg",
         "thumb": "/gallery/images/thumbs/walking.jpg",
-        "description": "Done just after the my first digital thing, this is just a digitally coloured version of a pencil sketch I did when bored. I wasn't too great with the hand-eye coordination with the drawing tablet, so instead of practising with drawing exercises I chose to trace an old drawing, since that would be more fun."
+        "description": "My second ever digital art thing, this is just a pencil sketch that I coloured in photoshop. I wasn't too great with hand-eye coordination using a drawing tablet, so instead of practising with drawing exercises I chose to trace an old drawing (I did eventually do those exercises though, and yes they're very worth it)."
       },
       {
         "file": "/gallery/images/full/walking_drawing.jpg",
-        "description": "This is the old drawing I copied from. Drew it one bored night on a scrap piece of paper (means I don't have to waste the sketchbook)."
+        "description": "This is the old drawing I copied from - I drew it one bored night on a scrap piece of paper."
       }
     ]
   }
