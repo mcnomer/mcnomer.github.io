@@ -164,7 +164,7 @@ main {
 .background {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: top left / 30% url("/background/1.svg") no-repeat, bottom right / 20% url("/background/2.svg") no-repeat;
   background-color: #121317;
   z-index: -1;
