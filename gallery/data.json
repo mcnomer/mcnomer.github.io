@@ -92,15 +92,11 @@
     ]
   },
   {
-    "name": "Flower Field",
+    "name": "Mischief",
     "pages": [
       {
-        "file": "/gallery/images/full/flower_field.jpg",
-        "thumb": "/gallery/images/thumbs/flower_field_thumb.jpg"
-      },
-      {
-        "file": "/gallery/images/full/flower_model.jpg",
-        "thumb": "/gallery/images/thumbs/flower_model_thumb.jpg"
+        "file": "/gallery/images/full/06.05.2024 - rodent.png",
+        "thumb": "/gallery/images/thumbs/06.05.2024 - rodent.jpg"
       }
     ]
   },
@@ -119,6 +115,19 @@
       }
     ]
   },
+  {
+    "name": "Flower Field",
+    "pages": [
+      {
+        "file": "/gallery/images/full/flower_field.jpg",
+        "thumb": "/gallery/images/thumbs/flower_field_thumb.jpg"
+      },
+      {
+        "file": "/gallery/images/full/flower_model.jpg",
+        "thumb": "/gallery/images/thumbs/flower_model_thumb.jpg"
+      }
+    ]
+  },
     {
     "name": "Lemon",
     "pages": [
@@ -130,49 +139,15 @@
     ]
   },
   {
-    "name": "Uh oh",
+    "name": "Outlines",
     "pages": [
       {
         "file": "/gallery/images/full/arms.svg"
-      }
-    ]
-  },
-  {
-    "name": "Mannequin",
-    "pages": [
+      },
       {
-        "file": "/gallery/images/full/mannequin/green.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/green.jpg",
-        "description": "A first attempt at something related to photography which isn't just taking pictures of sunsets, sunrises, or flowers. This was vaguely inspired by my recent playing about with colour, I guess."
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/turquoise.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/turquoise.jpg",
-        "description": "Well, it mainly consisted of changing values of things on a computer to be honest, but one thing I hadn't realised was there are two main colour wheels people use."
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/blue.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/blue.jpg"
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/pink.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/pink.jpg",
-        "description": "Oh, this picture was a struggle. I had to hold the mannequin with one hand from its base while trying to focus and take a picture with my phone, keeping the framing all the while. Eventually I got there, though after more tries than I'd like to admit."
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/red.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/red.jpg",
-        "description": ""
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/yellow.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/yellow.jpg",
-        "description": ""
-      }, 
-      {
-        "file": "/gallery/images/full/mannequin/making_of.jpg",
-        "thumb": "/gallery/images/thumbs/mannequin/making_of.jpg",
-        "description": "Behind the scenes, it's just me holding the mannequin in front of my PC, with a quick webpage I created to have a whole screen filled with a colour that I could change with the keyboard <i>(very fancy I know)</i>."
+        "file": "/gallery/images/full/bloopyfloop.png",
+        "thumb": "/gallery/images/thumbs/bloopyfloop.png",
+        "description": "bloop"
       }
     ]
   },
@@ -187,46 +162,11 @@
     ]
   },
   {
-    "name": "Blob",
-    "pages": [
-      {
-        "file": "/gallery/images/full/bloopyfloop.png",
-        "thumb": "/gallery/images/thumbs/bloopyfloop.png",
-        "description": "bloop"
-      }
-    ]
-  },
-  {
     "name": "Life in a Fallen Tree",
     "pages": [
       {
         "file": "/gallery/images/full/tree.jpg",
-        "thumb": "/gallery/images/thumbs/tree.jpg",
-        "description": "THIS, oh my god, this bloody drawing. It took so so long and, as time went on, the fear of smudging it went exponentially up (you can stil see visible smudge marks on the puddles that I couldn't get rid of). In the end, I'm pretty happy with how it turned out."
-      }
-    ]
-  },
-  {
-    "name": "Paper Sky",
-    "pages": [
-      {
-        "file": "/gallery/images/full/paper_sky.jpg",
-        "thumb": "/gallery/images/thumbs/paper_sky.jpg",
-        "description": "Made this for the cover of a spotify playlist. It's kinda creepy but I was a big fan of just that image of a huge eye appearing through the sky, and the pretty sunset colours."
-      }
-    ]
-  },
-  {
-    "name": "Walking",
-    "pages": [
-      {
-        "file": "/gallery/images/full/walking.jpg",
-        "thumb": "/gallery/images/thumbs/walking.jpg",
-        "description": "My second ever digital art thing, this is just a pencil sketch that I coloured in photoshop. I wasn't too great with hand-eye coordination using a drawing tablet, so instead of practising with drawing exercises I chose to trace an old drawing (I did eventually do those exercises though, and yes they're very worth it)."
-      },
-      {
-        "file": "/gallery/images/full/walking_drawing.jpg",
-        "description": "This is the old drawing I copied from - I drew it one bored night on a scrap piece of paper."
+        "thumb": "/gallery/images/thumbs/tree.jpg"
       }
     ]
   }
