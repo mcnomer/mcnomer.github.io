@@ -3,27 +3,27 @@
     "name": "Playing with Colour",
     "pages": [
       {
-        "file": "/gallery/images/full/colours/08.08.2024 - crooked.png",
+        "file": "/gallery/images/compressed/colours/08.08.2024 - crooked.jpg",
         "thumb": "/gallery/images/thumbs/colours/08.08.2024 - crooked.jpg"
       },
       {
-        "file": "/gallery/images/full/colours/03.08.2024 - green.png",
+        "file": "/gallery/images/compressed/colours/03.08.2024 - green.jpg",
         "thumb": "/gallery/images/thumbs/colours/03.08.2024 - green.jpg"
       },
       {
-        "file": "/gallery/images/full/colours/23.08.2024 - turquoise.png",
+        "file": "/gallery/images/compressed/colours/23.08.2024 - turquoise.jpg",
         "thumb": "/gallery/images/thumbs/colours/23.08.2024 - turquoise.jpg"
       },
       {
-        "file": "/gallery/images/full/colours/04.08.2024 - blue.png",
+        "file": "/gallery/images/compressed/colours/04.08.2024 - blue.jpg",
         "thumb": "/gallery/images/thumbs/colours/04.08.2024 - blue.jpg"
       },
       {
-        "file": "/gallery/images/full/colours/15.08.2024 - purple.png",
+        "file": "/gallery/images/compressed/colours/15.08.2024 - purple.jpg",
         "thumb": "/gallery/images/thumbs/colours/15.08.2024 - purple.jpg"
       },
       {
-        "file": "/gallery/images/full/colours/22.06.2024 - ghost.png",
+        "file": "/gallery/images/compressed/colours/22.06.2024 - ghost.jpg",
         "thumb": "/gallery/images/thumbs/colours/22.06.2024 - ghost.jpg"
       }
     ]
@@ -32,15 +32,15 @@
     "name": "Wedges",
     "pages": [
       {
-        "file": "/gallery/images/full/wedges/26.06.2024 - dark.png",
+        "file": "/gallery/images/compressed/wedges/26.06.2024 - dark.jpg",
         "thumb": "/gallery/images/thumbs/wedges/26.06.2024 - dark.jpg"
       },
       {
-        "file": "/gallery/images/full/wedges/06.07.2024 - light.png",
+        "file": "/gallery/images/compressed/wedges/06.07.2024 - light.jpg",
         "thumb": "/gallery/images/thumbs/wedges/06.07.2024 - light.jpg"
       },
       {
-        "file": "/gallery/images/full/wedges/07.07.2024 - faded.png",
+        "file": "/gallery/images/compressed/wedges/07.07.2024 - faded.jpg",
         "thumb": "/gallery/images/thumbs/wedges/07.07.2024 - faded.jpg"
       }
     ]
@@ -49,12 +49,12 @@
     "name": "Playing with Form",
     "pages": [
       {
-        "file": "/gallery/images/full/playing with form/15.07.2024 - rounded.png",
+        "file": "/gallery/images/compressed/playing with form/15.07.2024 - rounded.jpg",
         "thumb": "/gallery/images/thumbs/playing with form/15.07.2024 - rounded.jpg",
         "description": "These are also part of that ten minute art challenge I was doing. They're nothing fancy but I was inspired by a Hilma af Klint exhibition I had recently gone to, especially the style in her series \"The Ten Largest\"."
       },
       {
-        "file": "/gallery/images/full/playing with form/16.07.2024 - angular.png",
+        "file": "/gallery/images/compressed/playing with form/16.07.2024 - angular.jpg",
         "thumb": "/gallery/images/thumbs/playing with form/16.07.2024 - angular.jpg"
       }
     ]
@@ -63,7 +63,7 @@
     "name": "Desert",
     "pages": [
       {
-        "file": "/gallery/images/full/desert.png",
+        "file": "/gallery/images/compressed/desert.jpg",
         "thumb": "/gallery/images/thumbs/desert.jpg"
       }
     ]
@@ -72,11 +72,11 @@
     "name": "Realism-ish",
     "pages": [
       {
-        "file": "/gallery/images/full/05.03.2024 - match.png",
+        "file": "/gallery/images/compressed/05.03.2024 - match.jpg",
         "thumb": "/gallery/images/thumbs/05.03.2024 - match.jpg"
       },
       {
-        "file": "/gallery/images/full/04.03.2024 - shell.png",
+        "file": "/gallery/images/compressed/04.03.2024 - shell.jpg",
         "thumb": "/gallery/images/thumbs/04.03.2024 - shell.jpg"
       }
     ]
@@ -85,7 +85,7 @@
     "name": "Swirls",
     "pages": [
       {
-        "file": "/gallery/images/full/23.02.2024 - swirls.png",
+        "file": "/gallery/images/compressed/23.02.2024 - swirls.jpg",
         "thumb": "/gallery/images/thumbs/23.02.2024 - swirls.jpg",
         "description": "Just having some fun while trying to get back into art. This painting and quite a few others are part of a ten minute challenge to do a painting every day, within that time limit. It's a great way to just get something done, and I eventually relaxed the time limit once I started making things that needed more work."
       }
@@ -95,7 +95,7 @@
     "name": "Mischief",
     "pages": [
       {
-        "file": "/gallery/images/full/06.05.2024 - rodent.png",
+        "file": "/gallery/images/compressed/06.05.2024 - rodent.jpg",
         "thumb": "/gallery/images/thumbs/06.05.2024 - rodent.jpg"
       }
     ]
@@ -104,12 +104,12 @@
     "name": "Living Room",
     "pages": [
       {
-        "file": "/gallery/images/full/living_room.jpg",
+        "file": "/gallery/images/compressed/living_room.jpg",
         "thumb": "/gallery/images/thumbs/living_room_thumb.jpg",
         "description": "Lockdown clearly took its toll on me here, as I spent weeks creating a 3D recreation of my living room. At least now I'm decent with Blender."
       },
       {
-        "file": "/gallery/images/full/first_render.jpg",
+        "file": "/gallery/images/compressed/first_render.jpg",
         "thumb": "/gallery/images/thumbs/first_render.jpg",
         "description": "Here's my first render."
       }
@@ -119,11 +119,11 @@
     "name": "Flower Field",
     "pages": [
       {
-        "file": "/gallery/images/full/flower_field.jpg",
+        "file": "/gallery/images/compressed/flower_field.jpg",
         "thumb": "/gallery/images/thumbs/flower_field_thumb.jpg"
       },
       {
-        "file": "/gallery/images/full/flower_model.jpg",
+        "file": "/gallery/images/compressed/flower_model.jpg",
         "thumb": "/gallery/images/thumbs/flower_model_thumb.jpg"
       }
     ]
@@ -132,7 +132,7 @@
     "name": "Lemon",
     "pages": [
     {
-        "file": "/gallery/images/full/lemon.png",
+        "file": "/gallery/images/compressed/lemon.png",
         "thumb": "/gallery/images/thumbs/lemon.jpg",
         "description": "I don't quite remember the context behind this one but I think it was a logo idea I had for a fake fashion brand."
       }
@@ -142,10 +142,10 @@
     "name": "Outlines",
     "pages": [
       {
-        "file": "/gallery/images/full/arms.svg"
+        "file": "/gallery/images/compressed/arms.svg"
       },
       {
-        "file": "/gallery/images/full/bloopyfloop.png",
+        "file": "/gallery/images/compressed/bloopyfloop.png",
         "thumb": "/gallery/images/thumbs/bloopyfloop.png",
         "description": "bloop"
       }
@@ -155,7 +155,7 @@
     "name": "Neon",
     "pages": [
       {
-        "file": "/gallery/images/full/neon.jpg",
+        "file": "/gallery/images/compressed/neon.jpg",
         "thumb": "/gallery/images/thumbs/neon.jpg",
         "description": "A quick doodle using a black canvas because the idea felt quite cool, and more neon colours are fun to just mess about with."
       }
@@ -165,7 +165,7 @@
     "name": "Life in a Fallen Tree",
     "pages": [
       {
-        "file": "/gallery/images/full/tree.jpg",
+        "file": "/gallery/images/compressed/tree.jpg",
         "thumb": "/gallery/images/thumbs/tree.jpg"
       }
     ]
